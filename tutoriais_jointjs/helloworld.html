@@ -15,7 +15,7 @@
 			
 			 <!-- serve para anotar tds os eventos que estão sendo feitos -->
 			graph.on('all', function(eventName, cell) {
-			console.log(arguments);
+				console.log(arguments);
 			});
 			
 			<!-- cria a view para o graph -->
@@ -46,7 +46,7 @@
 			});
 			<!-- serve para anotar detalhadamente os eventos que estão sendo feitos na variável rect -->
 			rect.on('change:position', function(element) { 
-			console.log(element.id, ':', element.get('position'));
+				console.log(element.id, ':', element.get('position'));
 			});
 			<!-- seta estilos diferentes para os retangulos criados -->
 			rect.attr({ 
