@@ -10,12 +10,11 @@
         <script>
 
             $(document).ready(function(){
-
-
+	
                 $("#btninsert").click(function(event){
 
                     var m2 = new joint.shapes.devs.Model({
-                        position: { x: 400, y: 50 },
+                        position: { x: 40, y: 20 },
                         size: { width: 45, height: 45 },
                         inPorts: ['in1','in2'],
                         outPorts: ['out'],
@@ -28,15 +27,11 @@
                     });
                     graph.addCell(m2);
 
-
                     //$("#items").append('<div><input type="text" name="input[]"><button  class="delete">Delete</button></div>');
 
                 });
 
-
-
             });
-
 
         </script>
     </head>
@@ -50,22 +45,27 @@
             var graph = new joint.dia.Graph;
 
             graph.on('all', function(eventName, cell) {
-                console.log(arguments);
-
-			//	if (eventName != 'change' || eventName != 'change:position'){
-					$("#items").append(eventName+ "</br>");
-					//$("#items").append(arguments[0] + "</br>");
-					//$("#items").append(arguments[1].id+ "</br>");
-				//}
+			
+			var n = eventName.indexOf("change");
+			if(n == -1){
+					
+					console.log(arguments);
+					var n2 = eventName.indexOf("batch");
+					
+					if(eventName != "sort" && n2 == -1){
+							$("#items").append(eventName + " - ");
+							if(arguments[1] != null)
+								$("#items").append(arguments[1].id + "</br>");
+					}
+					else	
+						$("#items").append(eventName + "</br>");
+				}
 
             });
 
 			var paper = new joint.dia.Paper({ el: $('#paper-create'), width: 1000, height: 500, gridSize: 1, model: graph });
-            
 
 		</script>
-
-
 
     <div id="items"></div>
     </body>
