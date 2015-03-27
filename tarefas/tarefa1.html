@@ -10,21 +10,41 @@
         <script>
 
             $(document).ready(function(){
-	
+				var x = 0;
+				var y = 0;
                 $("#btninsert").click(function(event){
-
-                    var m2 = new joint.shapes.devs.Model({
-                        position: { x: 40, y: 20 },
-                        size: { width: 45, height: 45 },
-                        inPorts: ['in1','in2'],
-                        outPorts: ['out'],
-                        attrs: {
-                            '.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
-                            rect: { fill: '#2ECC71' },
-                            '.inPorts circle': { fill: '#16A085' },
-                            '.outPorts circle': { fill: '#E74C3C' }
-                        }
-                    });
+				if (x < 1000){
+					var m2 = new joint.shapes.devs.Model({
+						position: { x: x + 40, y: y + 20 },
+						size: { width: 45, height: 45 },
+						inPorts: ['in1','in2'],
+						outPorts: ['out'],
+						attrs: {
+							'.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
+							rect: { fill: '#2ECC71' },
+							'.inPorts circle': { fill: '#16A085' },
+							'.outPorts circle': { fill: '#E74C3C' }
+						}
+					});
+					x += 150;
+				}
+				else{
+					y += 100;
+					x = 0;
+					var m2 = new joint.shapes.devs.Model({
+						position: { x: x + 40, y: y + 20 },
+						size: { width: 45, height: 45 },
+						inPorts: ['in1','in2'],
+						outPorts: ['out'],
+						attrs: {
+							'.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
+							rect: { fill: '#2ECC71' },
+							'.inPorts circle': { fill: '#16A085' },
+							'.outPorts circle': { fill: '#E74C3C' }
+						}
+					});
+					x += 150;
+				}
                     graph.addCell(m2);
 
                     //$("#items").append('<div><input type="text" name="input[]"><button  class="delete">Delete</button></div>');
@@ -63,7 +83,7 @@
 
             });
 
-			var paper = new joint.dia.Paper({ el: $('#paper-create'), width: 1000, height: 500, gridSize: 1, model: graph });
+			var paper = new joint.dia.Paper({ el: $('#paper-create'), width: 1100, height: 500, gridSize: 1, model: graph });
 
 		</script>
 
