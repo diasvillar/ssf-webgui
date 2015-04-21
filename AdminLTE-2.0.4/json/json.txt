@@ -1,0 +1,387 @@
+{ 
+	"modulo_tipo_a" :[
+			{
+					"modulo_1":
+					{
+							"name":"modulo1",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_1"},
+								{"name":"entrada_2", "type":"type_2"},
+								{"name":"entrada_3", "type":"type_3"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_1"},
+								{"name":"saida_2", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_1", "type":"type_1", "default":"s"}
+					},
+					"modulo_2":
+					{
+							"name":"modulo2",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_3"},
+								{"name":"saida_2", "type":"type_4"},
+								{"name":"saida_3", "type":"type_5"},
+								{"name":"saida_4", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_2", "type":"type_3", "default":"s"}
+					},
+					"modulo_3":
+					{
+							"name":"modulo3",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_1"},
+								{"name":"entrada_2", "type":"type_2"},
+								{"name":"entrada_3", "type":"type_3"},
+								{"name":"entrada_4", "type":"type_4"},
+								{"name":"entrada_5", "type":"type_5"},
+								{"name":"entrada_6", "type":"type_6"},
+								{"name":"entrada_7", "type":"type_7"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_3", "type":"type_2", "default":"n"}
+					},
+					"modulo_4":
+					{
+							"name":"modulo4",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_3"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_4", "type":"type_1", "default":"n"}
+					},
+					"modulo_5":
+					{
+							"name":"modulo4",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"},
+								{"name":"entrada_2", "type":"type_3"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_5", "type":"type_3", "default":"s"}
+					},
+					"modulo_6":
+					{
+							"name":"modulo6",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"},
+								{"name":"entrada_2", "type":"type_5"},
+								{"name":"entrada_3", "type":"type_6"},
+								{"name":"entrada_4", "type":"type_7"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_1"},
+								{"name":"saida_2", "type":"type_5"},
+								{"name":"saida_3", "type":"type_2"},
+								{"name":"saida_4", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_6", "type":"type_2", "default":"s"}
+					}
+			}
+	],
+	"modulo_tipo_b" :[
+			{
+					"modulo_7":
+					{
+							"name":"modulo7",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_1"},
+								{"name":"entrada_2", "type":"type_2"},
+								{"name":"entrada_3", "type":"type_3"},
+								{"name":"entrada_4", "type":"type_6"},
+								{"name":"entrada_5", "type":"type_7"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_1"},
+								{"name":"saida_2", "type":"type_2"},
+								{"name":"saida_3", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_7", "type":"type_5", "default":"n"}
+					},
+					"modulo_8":
+					{
+							"name":"modulo8",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"},
+								{"name":"entrada_2", "type":"type_6"},
+								{"name":"entrada_3", "type":"type_7"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_3"},
+								{"name":"saida_2", "type":"type_4"},
+								{"name":"saida_3", "type":"type_5"},
+								{"name":"saida_4", "type":"type_7"},
+								{"name":"saida_5", "type":"type_1"},
+								{"name":"saida_6", "type":"type_6"}
+							],
+							"atributos":{"name":"atributo_8", "type":"type_6", "default":"s"}
+					},
+					"modulo_9":
+					{
+							"name":"modulo9",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_1"},
+								{"name":"entrada_2", "type":"type_5"},
+								{"name":"entrada_3", "type":"type_3"},
+								{"name":"entrada_4", "type":"type_6"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_4"}
+							],
+							"atributos":{"name":"atributo_9", "type":"type_6", "default":"n"}
+					},
+					"modulo_10":
+					{
+							"name":"modulo10",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_6"},
+								{"name":"entrada_2", "type":"type_3"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_7"},
+								{"name":"saida_2", "type":"type_5"},
+								{"name":"saida_3", "type":"type_3"},
+								{"name":"saida_4", "type":"type_1"},
+								{"name":"saida_5", "type":"type_6"},
+								{"name":"saida_6", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_10", "type":"type_4", "default":"n"}
+					},
+					"modulo_11":
+					{
+							"name":"modulo11",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"},
+								{"name":"entrada_2", "type":"type_3"},
+								{"name":"entrada_3", "type":"type_1"},
+								{"name":"entrada_4", "type":"type_5"},
+								{"name":"entrada_5", "type":"type_7"},
+								{"name":"entrada_6", "type":"type_6"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_4"},
+								{"name":"saida_2", "type":"type_7"},
+								{"name":"saida_3", "type":"type_5"},
+								{"name":"saida_4", "type":"type_3"},
+								{"name":"saida_5", "type":"type_1"},
+								{"name":"saida_6", "type":"type_6"},
+								{"name":"saida_7", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_11", "type":"type_5", "default":"s"}
+					},
+					"modulo_12":
+					{
+							"name":"modulo12",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_1"},
+								{"name":"entrada_2", "type":"type_4"},
+								{"name":"entrada_3", "type":"type_6"},
+								{"name":"entrada_4", "type":"type_7"},
+								{"name":"entrada_5", "type":"type_5"},
+								{"name":"entrada_6", "type":"type_2"},
+								{"name":"entrada_7", "type":"type_3"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_5"},
+								{"name":"saida_2", "type":"type_6"},
+								{"name":"saida_3", "type":"type_2"},
+								{"name":"saida_4", "type":"type_3"},
+								{"name":"saida_5", "type":"type_4"},
+								{"name":"saida_6", "type":"type_7"},
+								{"name":"saida_7", "type":"type_1"}
+							],
+							"atributos":{"name":"atributo_12", "type":"type_4", "default":"n"}
+					}
+			}
+	],
+	"modulo_tipo_c" :[
+			{
+					"modulo_13":
+					{
+							"name":"modulo13",
+							"entradas":[
+							],
+							"saidas":[
+							],
+							"atributos":{"name":"atributo_13", "type":"type_1", "default":"n"}
+					},
+					"modulo_14":
+					{
+							"name":"modulo14",
+							"entradas":[
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_6"},
+								{"name":"saida_2", "type":"type_1"}
+							],
+							"atributos":{"name":"atributo_14", "type":"type_3", "default":"n"}
+					},
+					"modulo_15":
+					{
+							"name":"modulo15",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"},
+								{"name":"entrada_2", "type":"type_5"},
+								{"name":"entrada_3", "type":"type_7"}
+							],
+							"saidas":[
+							],
+							"atributos":{"name":"atributo_15", "type":"type_6", "default":"n"}
+					},
+					"modulo_16":
+					{
+							"name":"modulo16",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_5"},
+								{"name":"entrada_2", "type":"type_1"},
+								{"name":"entrada_3", "type":"type_4"},
+								{"name":"entrada_4", "type":"type_6"},
+								{"name":"entrada_5", "type":"type_2"}
+							],
+							"saidas":[
+							],
+							"atributos":{"name":"atributo_16", "type":"type_5", "default":"s"}
+					},
+					"modulo_17":
+					{
+							"name":"modulo17",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_4"}
+							],
+							"saidas":[
+							],
+							"atributos":{"name":"atributo_17", "type":"type_4", "default":"s"}
+					},
+					"modulo_18":
+					{
+							"name":"modulo18",
+							"entradas":[
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_7"},
+								{"name":"saida_2", "type":"type_4"},
+								{"name":"saida_3", "type":"type_2"},
+								{"name":"saida_4", "type":"type_6"},
+								{"name":"saida_5", "type":"type_1"},
+								{"name":"saida_6", "type":"type_5"}
+							],
+							"atributos":{"name":"atributo_18", "type":"type_2", "default":"n"}
+					}
+			}
+	],
+	"modulo_tipo_d" :[
+			{
+					"modulo_19":
+					{
+							"name":"modulo19",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_7"},
+								{"name":"entrada_2", "type":"type_3"},
+								{"name":"entrada_3", "type":"type_4"},
+								{"name":"entrada_4", "type":"type_5"},
+								{"name":"entrada_5", "type":"type_2"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_19", "type":"type_5", "default":"n"}
+					},
+					"modulo_20":
+					{
+							"name":"modulo20",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_3"},
+								{"name":"entrada_2", "type":"type_1"},
+								{"name":"entrada_3", "type":"type_6"},
+								{"name":"entrada_4", "type":"type_2"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_6"},
+								{"name":"saida_2", "type":"type_1"},
+								{"name":"saida_3", "type":"type_2"}
+							],
+							"atributos":{"name":"atributo_20", "type":"type_1", "default":"s"}
+					},
+					"modulo_21":
+					{
+							"name":"modulo21",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_6"},
+								{"name":"entrada_2", "type":"type_3"},
+								{"name":"entrada_3", "type":"type_1"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_7"},
+								{"name":"saida_2", "type":"type_5"},
+								{"name":"saida_3", "type":"type_1"},
+								{"name":"saida_4", "type":"type_6"},
+								{"name":"saida_5", "type":"type_3"},
+								{"name":"saida_6", "type":"type_4"}
+							],
+							"atributos":{"name":"atributo_21", "type":"type_6", "default":"n"}
+					},
+					"modulo_22":
+					{
+							"name":"modulo22",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_3"},
+								{"name":"entrada_2", "type":"type_4"},
+								{"name":"entrada_3", "type":"type_5"},
+								{"name":"entrada_4", "type":"type_7"},
+								{"name":"entrada_5", "type":"type_2"},
+								{"name":"entrada_6", "type":"type_1"},
+								{"name":"entrada_7", "type":"type_6"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_2"},
+								{"name":"saida_2", "type":"type_3"},
+								{"name":"saida_3", "type":"type_4"},
+								{"name":"saida_4", "type":"type_6"},
+								{"name":"saida_5", "type":"type_7"}
+							],
+							"atributos":{"name":"atributo_22", "type":"type_3", "default":"n"}
+					},
+					"modulo_23":
+					{
+							"name":"modulo23",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_2"},
+								{"name":"entrada_2", "type":"type_6"},
+								{"name":"entrada_3", "type":"type_5"},
+								{"name":"entrada_4", "type":"type_1"},
+								{"name":"entrada_5", "type":"type_4"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_7"},
+								{"name":"saida_2", "type":"type_3"},
+								{"name":"saida_3", "type":"type_1"},
+								{"name":"saida_4", "type":"type_4"},
+								{"name":"saida_5", "type":"type_5"}
+							],
+							"atributos":{"name":"atributo_23", "type":"type_6", "default":"s"}
+					},
+					"modulo_24":
+					{
+							"name":"modulo24",
+							"entradas":[
+								{"name":"entrada_1", "type":"type_5"},
+								{"name":"entrada_2", "type":"type_1"}
+							],
+							"saidas":[
+								{"name":"saida_1", "type":"type_1"},
+								{"name":"saida_2", "type":"type_5"}
+							],
+							"atributos":{"name":"atributo_24", "type":"type_4", "default":"s"}
+					}
+			}
+	]
+}
