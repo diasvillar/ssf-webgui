@@ -99,45 +99,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><span>Modulo A</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Modulo 1</a></li>
-                <li><a href="#">Modulo 2</a></li>
-                <li><a href="#">Modulo 3</a></li>
-                <li><a href="#">Modulo 4</a></li>
-                <li><a href="#">Modulo 5</a></li>
-                <li><a href="#">Modulo 6</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_1">Modulo 1</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_2">Modulo 2</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_3">Modulo 3</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_4">Modulo 4</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_5">Modulo 5</a></li>
+                <li><a href="#"id="modulo_tipo_a|modulo_6">Modulo 6</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo B</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Modulo 7</a></li>
-                <li><a href="#">Modulo 8</a></li>
-                <li><a href="#">Modulo 9</a></li>
-                <li><a href="#">Modulo 10</a></li>
-                <li><a href="#">Modulo 11</a></li>
-                <li><a href="#">Modulo 12</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_7">Modulo 7</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_8">Modulo 8</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_9">Modulo 9</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_10">Modulo 10</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_11">Modulo 11</a></li>
+                <li><a href="#"id="modulo_tipo_b|modulo_12">Modulo 12</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo C</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Modulo 13</a></li>
-                <li><a href="#">Modulo 14</a></li>
-                <li><a href="#">Modulo 15</a></li>
-                <li><a href="#">Modulo 16</a></li>
-                <li><a href="#">Modulo 17</a></li>
-                <li><a href="#">Modulo 18</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_13">Modulo 13</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_14">Modulo 14</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_15">Modulo 15</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_16">Modulo 16</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_17">Modulo 17</a></li>
+                <li><a href="#"id="modulo_tipo_c|modulo_18">Modulo 18</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo D</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#">Modulo 19</a></li>
-                <li><a href="#">Modulo 20</a></li>
-                <li><a href="#">Modulo 21</a></li>
-                <li><a href="#">Modulo 22</a></li>
-                <li><a href="#">Modulo 23</a></li>
-                <li><a href="#">Modulo 24</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_19">Modulo 19</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_20">Modulo 20</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_21">Modulo 21</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_22">Modulo 22</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_23">Modulo 23</a></li>
+                <li><a href="#"id="modulo_tipo_d|modulo_24">Modulo 24</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -167,142 +167,138 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $(document).ready(function(){
 				var x = 0;
 				var y = 0;
-				
-                $("#btninsert").click(function(event){			
-				
-				var entrada = document.getElementById('NumEntrada').value;
-				var saida = document.getElementById('NumSaida').value;
-				var inPorts2 = [entrada];
-				var outPorts2 = [saida];
-				if (entrada > 7 || saida > 7){
-					alert("Aceita no máximo 7 entradas e 7 saídas");	
-					return false;
-				}
-				if (entrada == 0){
-					inPorts2 = null;
-					var color = '#0000FF';
-				}
-				if (entrada == 1){
-					inPorts2 = ['in1'];
-					var color = '#778899';
-				}
-				if (entrada == 2){
-					inPorts2 = ['in1','in2'];
-					var color = '#2ECC71';
-				}
-				if (entrada == 3){
-					inPorts2 = ['in1','in2','in3'];
-					var color = '#006400';
-				}
-				if (entrada == 4){
-					inPorts2 = ['in1','in2','in3', 'in4'];
-					var color = '#808000';
-				}
-				if (entrada == 5){
-					inPorts2 = ['in1','in2','in3', 'in4', 'in5'];
-					var color = '#BC8F8F';
-				}
-				if (entrada == 6){
-					inPorts2 = ['in1','in2','in3', 'in4', 'in5', 'in6'];
-					var color = '#FF4500';
-				}
-				if (entrada == 7){
-					inPorts2 = ['in1','in2','in3', 'in4', 'in5', 'in6', 'in7'];
-					var color = '#FFFF00';
-				}
-				if (saida == 0){
-					outPorts2 = null;
-				}
-				if (saida == 1){
-					outPorts2 = ['out1'];
-				}
-				if (saida == 2){
-					outPorts2 = ['out1','out2'];
-				}
-				if (saida == 3){
-					outPorts2 = ['out1','out2','out3'];
-				}
-				if (saida == 4){
-					outPorts2 = ['out1','out2','out3', 'out4'];
-				}
-				if (saida == 5){
-					outPorts2 = ['out1','out2','out3', 'out4', 'out5'];
-				}
-				if (saida == 6){
-					outPorts2 = ['out1','out2','out3', 'out4', 'out5', 'out6'];
-				}
-				if (saida == 7){
-					outPorts2 = ['out1','out2','out3', 'out4', 'out5', 'out6', 'out7'];
-				}
-				
-				if (x < 1000){
-					var m2 = new joint.shapes.devs.Model({
-						position: { x: x + 40, y: y + 20 },
-						size: { width: 200, height: 180 },
-						inPorts: inPorts2,
-						outPorts: outPorts2,
-						attrs: {
-							'.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
-							rect: { fill: color },
-							'.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
-							'.outPorts circle': { fill: '#E74C3C', type: 'output' }
-						}
-					});
-					x += 290;
-					
-					
-				}
-				else{
-					y += 200;
-					x = 0;
-					var m2 = new joint.shapes.devs.Model({
-						position: { x: x + 40, y: y + 20 },
-						size: { width: 200, height: 180 },
-						inPorts: inPorts2,
-						outPorts: outPorts2,
-						attrs: {
-							'.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
-							rect: { fill: color },
-							'.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
-							'.outPorts circle': { fill: '#E74C3C', type: 'output' }
-						}
-					});
-					x += 290;
-				}
-                    graph.addCell(m2);
+            
+            
+            
+            $(document).on("click", "a", function(){
+                var id = this.id.split("|");
+                var moduloRoot = id[0];
+                var moduloChild = id[1];
+                
 
-                    
-					
-                });
+                var HTML_FILE_URL = './json/json.txt';
 
+                if (moduloChild != null && moduloRoot != null) {
+                  $.get(HTML_FILE_URL, function(data){
+                  
+                 var obj = jQuery.parseJSON(data);
+                  var name = obj[moduloRoot][0][moduloChild].name;
+                  var entrada = obj[moduloRoot][0][moduloChild].entradas;
+                  var saidas = obj[moduloRoot][0][moduloChild].saidas;
+                  
+                  //alert(entrada);
+                  //alert(saidas.length);
+                  
+                  //pode usar entrada[0].name , saida[1].name ou saida[1].type
+                  
+                  
+                  //$("#NumEntrada").val(entrada.length);
+                  //$("#NumSaida").val(saidas.length);
+               
+                  //
+                  
+                  createModel(name, moduloRoot, entrada.length, saidas.length);
+                  
+                  
+
+                  });
+                }
+                
+                
             });
+            
+            
+            function createModel(name, moduloRoot, entrada, saida) {
+              
+             // alert (entrada);
+              
+              var inPorts2 = [entrada];
+	      var outPorts2 = [saida];
+              
+              
+              if (entrada == 0) {
+                inPorts2 = null;
+              }
+              else{
+                  for(var i=0; i < entrada; i++)
+                  {
+                    var portName = "in" + (i+1).toString();
+    
+                     inPorts2[i] = portName;
+     
+                  }
+              }
+              
+              if (moduloRoot === 'modulo_tipo_a') {
+                var color = '#0000FF';
+              }
+              else if (moduloRoot === 'modulo_tipo_b') {
+                      var color = '#778899';
+                  }
+                  else if (moduloRoot === 'modulo_tipo_c') {
+                          var color = '#FF4500';
+                      }
+                      else if (moduloRoot === 'modulo_tipo_d') {
+                            var color = '#2ECC71';
+                          }
+              
+              if (saida == 0) {
+                outPorts2 = null;
+              }
+              else{                  
+                  for(var i=0; i < saida; i++)
+                  {
+                    var portName = "out" + (i+1).toString();
+    
+                    outPorts2[i] = portName;
+                  }
+              }
+
+	      if (x < 1000){
+		var m2 = new joint.shapes.devs.Model({
+		position: { x: x + 40, y: y + 20 },
+		size: { width: 200, height: 180 },
+		inPorts: inPorts2,
+		outPorts: outPorts2,
+		attrs: {
+			'.label': { text: name, 'ref-x': .4, 'ref-y': .2 },
+			rect: { fill: color },
+			'.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
+			'.outPorts circle': { fill: '#E74C3C', type: 'output' }
+                  }
+                });
+	      
+              x += 290;
+	      }
+	      else{
+		y += 200;
+		x = 0;
+		var m2 = new joint.shapes.devs.Model({
+		    position: { x: x + 40, y: y + 20 },
+		    size: { width: 200, height: 180 },
+		    inPorts: inPorts2,
+		    outPorts: outPorts2,
+		    attrs: {
+                          '.label': { text: name, 'ref-x': .4, 'ref-y': .2 },
+                          rect: { fill: color },
+                          '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
+                          '.outPorts circle': { fill: '#E74C3C', type: 'output' }
+		      }
+                  });
+		x += 290;
+	      }
+              graph.addCell(m2);
+
+            }
+
+          });
 
         </script>
-		
-		<script type="text/javascript"> 
-		
-			function PermiteSomenteNumeros(event) { 
-				var charCode = (event.which) ? event.which : event.keyCode 
-				var entrada = document.getElementById('NumEntrada').value;
-
-				if (charCode > 31 && (charCode < 48 || charCode > 57)) 
-					return false; 
-					
-				if (entrada > 7)
-					return false;
-				return true; 
-			} 
-		</script>		
-		
-		
+	      
     </head>
 
 	<body>
 	    <div id="paper-create"></div>
-
-	    <input id="NumEntrada" type="text" name="Número de Entradas" placeholder="Número de Entradas" onkeypress="return PermiteSomenteNumeros(event);"/>
-            <p><input id="NumSaida" type="text" name="Número de Saídas" placeholder="Número de Saídas" onkeypress="return PermiteSomenteNumeros(event);"/></p>
-            <p><input type="submit" id="btninsert" name="btninsert" value="Criar" /></p>
 
 	    <script type="text/javascript">
             var graph = new joint.dia.Graph;

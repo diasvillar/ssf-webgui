@@ -59,7 +59,7 @@
 					},
 					"modulo_5":
 					{
-							"name":"modulo4",
+							"name":"modulo5",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_3"}
