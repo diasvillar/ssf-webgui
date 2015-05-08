@@ -25,6 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="plugins/jointJS/joint.js"></script>
     <script src="plugins/jointJS/joint.shapes.devs.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="script/create.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,45 +100,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="treeview">
               <a href="#"><span>Modulo A</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"id="modulo_tipo_a|modulo_1">Modulo 1</a></li>
-                <li><a href="#"id="modulo_tipo_a|modulo_2">Modulo 2</a></li>
-                <li><a href="#"id="modulo_tipo_a|modulo_3">Modulo 3</a></li>
-                <li><a href="#"id="modulo_tipo_a|modulo_4">Modulo 4</a></li>
-                <li><a href="#"id="modulo_tipo_a|modulo_5">Modulo 5</a></li>
-                <li><a href="#"id="modulo_tipo_a|modulo_6">Modulo 6</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_1" draggable="true" ondragstart="drag(event)">Modulo 1</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_2" draggable="true" ondragstart="drag(event)">Modulo 2</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_3" draggable="true" ondragstart="drag(event)">Modulo 3</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_4" draggable="true" ondragstart="drag(event)">Modulo 4</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_5" draggable="true" ondragstart="drag(event)">Modulo 5</a></li>
+                <li><a href="#" id="modulo_tipo_a|modulo_6" draggable="true" ondragstart="drag(event)">Modulo 6</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo B</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"id="modulo_tipo_b|modulo_7">Modulo 7</a></li>
-                <li><a href="#"id="modulo_tipo_b|modulo_8">Modulo 8</a></li>
-                <li><a href="#"id="modulo_tipo_b|modulo_9">Modulo 9</a></li>
-                <li><a href="#"id="modulo_tipo_b|modulo_10">Modulo 10</a></li>
-                <li><a href="#"id="modulo_tipo_b|modulo_11">Modulo 11</a></li>
-                <li><a href="#"id="modulo_tipo_b|modulo_12">Modulo 12</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_7" draggable="true" ondragstart="drag(event)">Modulo 7</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_8" draggable="true" ondragstart="drag(event)">Modulo 8</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_9" draggable="true" ondragstart="drag(event)">Modulo 9</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_10" draggable="true" ondragstart="drag(event)">Modulo 10</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_11" draggable="true" ondragstart="drag(event)">Modulo 11</a></li>
+                <li><a href="#" id="modulo_tipo_b|modulo_12" draggable="true" ondragstart="drag(event)">Modulo 12</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo C</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"id="modulo_tipo_c|modulo_13">Modulo 13</a></li>
-                <li><a href="#"id="modulo_tipo_c|modulo_14">Modulo 14</a></li>
-                <li><a href="#"id="modulo_tipo_c|modulo_15">Modulo 15</a></li>
-                <li><a href="#"id="modulo_tipo_c|modulo_16">Modulo 16</a></li>
-                <li><a href="#"id="modulo_tipo_c|modulo_17">Modulo 17</a></li>
-                <li><a href="#"id="modulo_tipo_c|modulo_18">Modulo 18</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_13" draggable="true" ondragstart="drag(event)">Modulo 13</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_14" draggable="true" ondragstart="drag(event)">Modulo 14</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_15" draggable="true" ondragstart="drag(event)">Modulo 15</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_16" draggable="true" ondragstart="drag(event)">Modulo 16</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_17" draggable="true" ondragstart="drag(event)">Modulo 17</a></li>
+                <li><a href="#" id="modulo_tipo_c|modulo_18" draggable="true" ondragstart="drag(event)">Modulo 18</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#"><span>Modulo D</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="#"id="modulo_tipo_d|modulo_19">Modulo 19</a></li>
-                <li><a href="#"id="modulo_tipo_d|modulo_20">Modulo 20</a></li>
-                <li><a href="#"id="modulo_tipo_d|modulo_21">Modulo 21</a></li>
-                <li><a href="#"id="modulo_tipo_d|modulo_22">Modulo 22</a></li>
-                <li><a href="#"id="modulo_tipo_d|modulo_23">Modulo 23</a></li>
-                <li><a href="#"id="modulo_tipo_d|modulo_24">Modulo 24</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_19" draggable="true" ondragstart="drag(event)">Modulo 19</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_20" draggable="true" ondragstart="drag(event)">Modulo 20</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_21" draggable="true" ondragstart="drag(event)">Modulo 21</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_22" draggable="true" ondragstart="drag(event)">Modulo 22</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_23" draggable="true" ondragstart="drag(event)">Modulo 23</a></li>
+                <li><a href="#" id="modulo_tipo_d|modulo_24" draggable="true" ondragstart="drag(event)">Modulo 24</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -146,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)" id="dashboardMain">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -159,143 +160,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ol>
         </section>
 
-        <!-- Main content -->
+         <!-- Main content -->
         <section class="content">
-          
-           <script>
-
-            $(document).ready(function(){
-				var x = 0;
-				var y = 0;
-            
-            
-            
-            $(document).on("click", "a", function(){
-                var id = this.id.split("|");
-                var moduloRoot = id[0];
-                var moduloChild = id[1];
-                
-
-                var HTML_FILE_URL = './json/json.txt';
-
-                if (moduloChild != null && moduloRoot != null) {
-                  $.get(HTML_FILE_URL, function(data){
-                  
-                 var obj = jQuery.parseJSON(data);
-                  var name = obj[moduloRoot][0][moduloChild].name;
-                  var entrada = obj[moduloRoot][0][moduloChild].entradas;
-                  var saidas = obj[moduloRoot][0][moduloChild].saidas;
-                  
-                  //alert(entrada);
-                  //alert(saidas.length);
-                  
-                  //pode usar entrada[0].name , saida[1].name ou saida[1].type
-                  
-                  
-                  //$("#NumEntrada").val(entrada.length);
-                  //$("#NumSaida").val(saidas.length);
-               
-                  //
-                  
-                  createModel(name, moduloRoot, entrada.length, saidas.length);
-                  
-                  
-
-                  });
-                }
-                
-                
-            });
-            
-            
-            function createModel(name, moduloRoot, entrada, saida) {
-              
-             // alert (entrada);
-              
-              var inPorts2 = [entrada];
-	      var outPorts2 = [saida];
-              
-              
-              if (entrada == 0) {
-                inPorts2 = null;
-              }
-              else{
-                  for(var i=0; i < entrada; i++)
-                  {
-                    var portName = "in" + (i+1).toString();
-    
-                     inPorts2[i] = portName;
-     
-                  }
-              }
-              
-              if (moduloRoot === 'modulo_tipo_a') {
-                var color = '#0000FF';
-              }
-              else if (moduloRoot === 'modulo_tipo_b') {
-                      var color = '#778899';
-                  }
-                  else if (moduloRoot === 'modulo_tipo_c') {
-                          var color = '#FF4500';
-                      }
-                      else if (moduloRoot === 'modulo_tipo_d') {
-                            var color = '#2ECC71';
-                          }
-              
-              if (saida == 0) {
-                outPorts2 = null;
-              }
-              else{                  
-                  for(var i=0; i < saida; i++)
-                  {
-                    var portName = "out" + (i+1).toString();
-    
-                    outPorts2[i] = portName;
-                  }
-              }
-
-	      if (x < 1000){
-		var m2 = new joint.shapes.devs.Model({
-		position: { x: x + 40, y: y + 20 },
-		size: { width: 200, height: 180 },
-		inPorts: inPorts2,
-		outPorts: outPorts2,
-		attrs: {
-			'.label': { text: name, 'ref-x': .4, 'ref-y': .2 },
-			rect: { fill: color },
-			'.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
-			'.outPorts circle': { fill: '#E74C3C', type: 'output' }
-                  }
-                });
-	      
-              x += 290;
-	      }
-	      else{
-		y += 200;
-		x = 0;
-		var m2 = new joint.shapes.devs.Model({
-		    position: { x: x + 40, y: y + 20 },
-		    size: { width: 200, height: 180 },
-		    inPorts: inPorts2,
-		    outPorts: outPorts2,
-		    attrs: {
-                          '.label': { text: name, 'ref-x': .4, 'ref-y': .2 },
-                          rect: { fill: color },
-                          '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
-                          '.outPorts circle': { fill: '#E74C3C', type: 'output' }
-		      }
-                  });
-		x += 290;
-	      }
-              graph.addCell(m2);
-
-            }
-
-          });
-
-        </script>
-	      
-    </head>
 
 	<body>
 	    <div id="paper-create"></div>
@@ -323,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	    var paper = new joint.dia.Paper({ 
 		el: $('#paper-create'), 
-		width: 1250, 
+		width: 1100, 
 		height: 500, 
 		gridSize: 1, 
 		model: graph, 
