@@ -13,7 +13,11 @@
 								{"name":"saida_1", "type":"type_1"},
 								{"name":"saida_2", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_1", "type":"type_1", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"} 
+							
+							]
 					},
 					"modulo_2":
 					{
@@ -27,7 +31,11 @@
 								{"name":"saida_3", "type":"type_5"},
 								{"name":"saida_4", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_2", "type":"type_3", "default":"s"}
+							"atributos":[
+								{"name":"nome", "type":"string", "default":"teste_2"},
+								{"name":"valor", "type":"int", "default":"99"}
+							
+							]
 					},
 					"modulo_3":
 					{
@@ -44,7 +52,11 @@
 							"saidas":[
 								{"name":"saida_1", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_3", "type":"type_2", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_4":
 					{
@@ -55,7 +67,11 @@
 							"saidas":[
 								{"name":"saida_1", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_4", "type":"type_1", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_5":
 					{
@@ -67,7 +83,11 @@
 							"saidas":[
 								{"name":"saida_1", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_5", "type":"type_3", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_6":
 					{
@@ -84,7 +104,11 @@
 								{"name":"saida_3", "type":"type_2"},
 								{"name":"saida_4", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_6", "type":"type_2", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					}
 			}
 	],
@@ -105,7 +129,11 @@
 								{"name":"saida_2", "type":"type_2"},
 								{"name":"saida_3", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_7", "type":"type_5", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_8":
 					{
@@ -123,7 +151,11 @@
 								{"name":"saida_5", "type":"type_1"},
 								{"name":"saida_6", "type":"type_6"}
 							],
-							"atributos":{"name":"atributo_8", "type":"type_6", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_9":
 					{
@@ -137,7 +169,11 @@
 							"saidas":[
 								{"name":"saida_1", "type":"type_4"}
 							],
-							"atributos":{"name":"atributo_9", "type":"type_6", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_10":
 					{
@@ -154,7 +190,11 @@
 								{"name":"saida_5", "type":"type_6"},
 								{"name":"saida_6", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_10", "type":"type_4", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_11":
 					{
@@ -176,7 +216,11 @@
 								{"name":"saida_6", "type":"type_6"},
 								{"name":"saida_7", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_11", "type":"type_5", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_12":
 					{
@@ -199,7 +243,11 @@
 								{"name":"saida_6", "type":"type_7"},
 								{"name":"saida_7", "type":"type_1"}
 							],
-							"atributos":{"name":"atributo_12", "type":"type_4", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					}
 			}
 	],
@@ -212,7 +260,11 @@
 							],
 							"saidas":[
 							],
-							"atributos":{"name":"atributo_13", "type":"type_1", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_14":
 					{
@@ -223,7 +275,11 @@
 								{"name":"saida_1", "type":"type_6"},
 								{"name":"saida_2", "type":"type_1"}
 							],
-							"atributos":{"name":"atributo_14", "type":"type_3", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_15":
 					{
@@ -235,7 +291,11 @@
 							],
 							"saidas":[
 							],
-							"atributos":{"name":"atributo_15", "type":"type_6", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_16":
 					{
@@ -249,7 +309,11 @@
 							],
 							"saidas":[
 							],
-							"atributos":{"name":"atributo_16", "type":"type_5", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_17":
 					{
@@ -259,7 +323,11 @@
 							],
 							"saidas":[
 							],
-							"atributos":{"name":"atributo_17", "type":"type_4", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_18":
 					{
@@ -274,7 +342,11 @@
 								{"name":"saida_5", "type":"type_1"},
 								{"name":"saida_6", "type":"type_5"}
 							],
-							"atributos":{"name":"atributo_18", "type":"type_2", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					}
 			}
 	],
@@ -293,7 +365,11 @@
 							"saidas":[
 								{"name":"saida_1", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_19", "type":"type_5", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_20":
 					{
@@ -309,7 +385,11 @@
 								{"name":"saida_2", "type":"type_1"},
 								{"name":"saida_3", "type":"type_2"}
 							],
-							"atributos":{"name":"atributo_20", "type":"type_1", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_21":
 					{
@@ -327,7 +407,11 @@
 								{"name":"saida_5", "type":"type_3"},
 								{"name":"saida_6", "type":"type_4"}
 							],
-							"atributos":{"name":"atributo_21", "type":"type_6", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_22":
 					{
@@ -348,7 +432,11 @@
 								{"name":"saida_4", "type":"type_6"},
 								{"name":"saida_5", "type":"type_7"}
 							],
-							"atributos":{"name":"atributo_22", "type":"type_3", "default":"n"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_23":
 					{
@@ -367,7 +455,11 @@
 								{"name":"saida_4", "type":"type_4"},
 								{"name":"saida_5", "type":"type_5"}
 							],
-							"atributos":{"name":"atributo_23", "type":"type_6", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					},
 					"modulo_24":
 					{
@@ -380,7 +472,11 @@
 								{"name":"saida_1", "type":"type_1"},
 								{"name":"saida_2", "type":"type_5"}
 							],
-							"atributos":{"name":"atributo_24", "type":"type_4", "default":"s"}
+							"atributos":[
+								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"terminado", "type":"bool", "default":"false"}
+							
+							]
 					}
 			}
 	]
