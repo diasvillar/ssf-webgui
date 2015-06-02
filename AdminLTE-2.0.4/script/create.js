@@ -4,32 +4,80 @@ var currentObjectDragging;
 var dataSourceJson;
 var currentModRoot;
 var currentModChild;
+var currentIdJson;
+var jsonToSave;
+var currentObjId;
+var linkToJson;
+
 
 
  
 $(document).ready(function(){
     
     $('#btnSaveJson').click(function(){
-
+        
         if(currentModRoot != null && currentModChild != null)
         {
-
-            for(var i = 0; i < dataSourceJson[currentModRoot][0][currentModChild].atributos.length; i++)
+            var jsonObj = findObjectInJson(currentIdJson);
+            
+            for(var i = 0; i < jsonObj.atributos.length; i++)
             {
-                var currentAttr = dataSourceJson[currentModRoot][0][currentModChild].atributos[i];
+                var currentAttr = jsonObj.atributos[i];
+				
+				if(currentAttr.type == 'bool'){
+					
+					var valueInputed = $("#bool").val();
+				}
+                else{
+					var valueInputed = $('#' + currentModChild + '_' +currentAttr.name + '_value').val();
+				}
                 
-                var valueInputed = $('#' + currentModChild + '_' +currentAttr.name + '_value').val();
-                
-                
-                dataSourceJson[currentModRoot][0][currentModChild].atributos[i].default = valueInputed;
-                
-                
+                jsonObj.atributos[i].default = valueInputed;
+        
             }
             
         }
         
         currentModRoot = null;
         currentModChild = null;
+        currentIdJson = null;
+    });
+	    
+    $('#btnCancelEdit').click(function(){
+        
+        currentModRoot = null;
+        currentModChild = null;
+        currentIdJson = null;
+        
+        
+    });
+    
+    $('#btnSave').click(function(){
+		
+		var oneLink;
+        
+        if(typeof jsonToSave !== 'undefined' && jsonToSave.length > 0){
+			
+			allLinks = graph.getLinks();
+			
+			for (var x = 0; x< allLinks.length; x++)
+			{
+				linkToJson = allLinks[x].toJSON();
+				//alert(linkToJson.source.id);
+				//alert(linkToJson.target.id);
+				//alert(linkToJson.source.port);
+				//alert(linkToJson.target.port);
+				
+				createLinkInJson(linkToJson.source.id, linkToJson.target.id, linkToJson.source.port, linkToJson.target.port);
+			}
+			
+			for(var i =0; i < jsonToSave.length; i++)
+			{
+				var obj = jsonToSave[i];
+				alert(JSON.stringify(obj));	
+			}
+		}
+        
     });
     
     
@@ -37,6 +85,29 @@ $(document).ready(function(){
     
     
 });
+
+function findObjectInJson(idToFind)
+{
+    
+    if(jsonToSave != null)
+    {
+       for(var j =0; j < jsonToSave.length; j++)
+        {
+            var jsonObj = jsonToSave[j];
+            if(idToFind == jsonObj.idValue)
+            {
+                
+                return jsonObj;
+                
+            }
+        
+        } 
+        
+    }
+    
+    
+    
+}
 
 function allowDrop(ev){
     ev.preventDefault();
@@ -100,17 +171,31 @@ function readJSon(currentObjectDragging, mousePos){
 
             var obj = jQuery.parseJSON(data);
             
-            if(dataSourceJson == null)
-                dataSourceJson = obj;
-            else
-                obj = dataSourceJson;
-            
             var name = obj[moduloRoot][0][moduloChild].name;
             var entrada = obj[moduloRoot][0][moduloChild].entradas;
             var saidas = obj[moduloRoot][0][moduloChild].saidas;
             var atributos = obj[moduloRoot][0][moduloChild].atributos;
             
-            createModel(name, moduloRoot, moduloChild, entrada.length, saidas.length, mousePos.x, mousePos.y);
+            var currentObject = obj[moduloRoot][0][moduloChild];
+            
+            currentObject.posX = mousePos.x;
+            currentObject.posY = mousePos.y;
+            currentObject.links = new Array();
+            
+            if(currentObjId == null)
+                currentObjId = 1;
+            else
+                currentObjId++
+                
+            currentObject.idValue = "obj_" + currentObjId;
+            
+            
+            if(jsonToSave == null)
+                jsonToSave = new Array();
+            
+            jsonToSave.push(currentObject);
+            
+            createModel(name, moduloRoot, moduloChild, entrada.length, saidas.length, mousePos.x, mousePos.y, currentObject.idValue);
         });
     }
 }
@@ -126,8 +211,17 @@ function createAttributes(atributos, moduloChild)
 
     for(var i = 0; i < atributos.length; i++)
     {
-        $table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><input type="text" id="'+ moduloChild+'_'+ atributos[i].name +'_value" value="'+ atributos[i].default +'" width="100%"/></td></tr>' );
-        
+		
+		if( atributos[i].type == 'bool'){
+			if(atributos[i].default == 'false'){
+				$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><select id="bool"> <option>' + atributos[i].default + '</option> <option>true</option></select></td></tr>' );
+			}else{
+				$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><select id="bool"> <option>' + atributos[i].default + '</option> <option>false</option></select></td></tr>' );
+			}
+		}
+		else{
+			$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><input type="text" id="'+ moduloChild+'_'+ atributos[i].name +'_value" value="'+ atributos[i].default +'" width="100%"/></td></tr>' );
+        }
     }
     
     $('#here_table').append($table);
@@ -138,7 +232,7 @@ function createAttributes(atributos, moduloChild)
     
 }
 
-function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
+function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y, objectId) {
     //var x = 0;
     //var y = 0;
     var inPorts2 = [entrada];
@@ -155,16 +249,16 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
     }
     
     if (moduloRoot === 'modulo_tipo_a'){
-        var color = '#0000FF';
+        var element = 'html-element';
     }
     else if (moduloRoot === 'modulo_tipo_b'){
-            var color = '#778899';
+            var element = 'html-element2';
         }
         else if (moduloRoot === 'modulo_tipo_c'){
-                var color = '#FF4500';
+                var element = 'html-element3';
             }
             else if (moduloRoot === 'modulo_tipo_d'){
-                    var color = '#2ECC71';
+                    var element = 'html-element4';
                 }
               
     if (saida == 0){
@@ -176,21 +270,6 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
             outPorts2[i] = portName;
         }
     }
-
-    var m2 = new joint.shapes.devs.Model({
-        position: { x: x, y: y },
-        size: { width: 130, height: 100 },
-        inPorts: inPorts2,
-        outPorts: outPorts2,
-        attrs: {
-            '.label': { text: name, 'ref-x': .4, 'ref-y': .2 },
-            rect: { fill: color },
-            '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
-            '.outPorts circle': { fill: '#E74C3C', type: 'output' }
-        }
-    });
-
-    //graph.addCell(m2);
     
       // Create a custom element.
     // ------------------------
@@ -214,7 +293,7 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
                     stroke: 'black'
                 },
 
-                 '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
+                '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
                 '.outPorts circle': { fill: '#E74C3C', type: 'output' }
             
             }
@@ -239,10 +318,13 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
     joint.shapes.html.ElementView = joint.dia.ElementView.extend({
 
         template: [
-            '<div class="html-element">',
-            '<button class="delete">x</button>',
-            '<button id="'+ moduloChild + '" idpai="' + moduloRoot + '" type="button" data-toggle="modal" data-target="#exampleModal">Me Clica!</button>',
-            '</div>'
+            '<div class="'+element+'">',
+			'<button id="btnDelete"'+'" idInJson="' + objectId +'" class="delete">x</button>',
+			'<label></label>',
+            '<br/>',
+			'<br/>',
+            '<button id="'+ moduloChild + '" idpai="' + moduloRoot + '" idInJson="' + objectId + '" type="button" data-toggle="modal" data-target="#exampleModal">Attributes</button>',
+			'</div>'
         ].join(''),
 
     initialize: function() {
@@ -254,23 +336,30 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
         this.$box.find('input,select').on('mousedown click', function(evt) { evt.stopPropagation(); });
         this.$box.find('button').on('click', function(evt) { 
             
+			
+			if(this.id == "btnDelete")
+			{
+				currentIdJson = $(this).attr("idInJson");
+				removeToJson(currentIdJson);
+			}
+			else{
             
-            var HTML_FILE_URL = './json/json.txt';
-    
-                var button = this;
-                
-                
-                currentModChild = this.id;
-                currentModRoot = $(this).attr("idpai");
+				var HTML_FILE_URL = './json/json.txt';
+		
+					var button = this;
+					
+					currentModChild = $(this).attr("id");
+					currentModRoot = $(this).attr("idpai");
+					currentIdJson = $(this).attr("idInJson");
+					
+					$.get(HTML_FILE_URL, function(data){
+			
+						var objToFind = findObjectInJson(currentIdJson);
 
-                $.get(HTML_FILE_URL, function(data){
-        
-                    var obj = dataSourceJson
-                    var atributos = obj[$(button).attr("idpai")][0][button.id].atributos;
-                    
-                    createAttributes(atributos, button.id);
-                });
-            });
+						createAttributes(objToFind.atributos, button.id);
+					});
+			}
+        });
 
        
         this.$box.find('.delete').on('click', _.bind(this.model.remove, this.model));
@@ -323,7 +412,8 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
                 var bbox = this.model.getBBox();
                 // Example of updating the HTML with a data stored in the cell model.
                 // paper.on('blank:pointerdown', function(evt, x, y) { this.$box.find('textarea').toBack(); });
-                this.$box.find('span').text(this.model.get('textarea'));
+				this.$box.find('label').text(this.model.get('label'));
+				this.$box.find('span').text(this.model.get('textarea'));
                 this.model.on('cell:pointerclick', function(evt, x, y) { this.$box.find('textarea').toFront(); });
                 this.$box.css({ width: bbox.width, height: bbox.height, left: bbox.x, top: bbox.y, transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)' });
             },
@@ -339,11 +429,49 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y) {
         var el1 = new joint.shapes.html.Element({ 
             position: { x: x, y: y }, 
             size: { width: 130, height: 100 },
+			label: moduloChild,
             inPorts: inPorts2,
             outPorts: outPorts2
           });
         
-        
+        setJointIdToJson(el1.id);
         graph.addCell(el1);
 
+}
+
+function setJointIdToJson(id)
+{
+    var i = jsonToSave.length;
+    
+    jsonToSave[i - 1].jointId = id;
+}
+
+function removeToJson(currentIdJson) 
+{
+      for(var i =  jsonToSave.length; i--;) {
+          if( jsonToSave[i].idValue === currentIdJson) {
+               jsonToSave.splice(i, 1);
+          }
+      }
+}
+
+function createLinkInJson(sourceId, targetId, sourcePort, targetPort){
+	
+	for(var i =  jsonToSave.length; i--;) {
+          if( jsonToSave[i].jointId === targetId) {
+			  
+              var target = jsonToSave[i].idValue;
+          }
+      }
+	
+	
+	for(var i =  jsonToSave.length; i--;) {
+          if( jsonToSave[i].jointId === sourceId) {
+			  
+			  var text = '{ "targetId":"'+target+'" , "saida":"'+sourcePort+'" , "entrada":"'+targetPort+'" }';
+			  var obj = JSON.parse(text);
+			  jsonToSave[i].links[jsonToSave[i].links.length] = obj;
+             // alert (JSON.stringify(jsonToSave[i].links));
+          }
+      }
 }

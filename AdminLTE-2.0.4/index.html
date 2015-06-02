@@ -32,96 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <style>
-      
-      #paper-create {
-   position: relative;
-   border: 1px solid gray;
-   display: inline-block;
-   background: transparent;
-   overflow: hidden;
-}
-#paper-create svg {
-   background: transparent;
 
-
-}
-#paper-create svg .link {
-   z-index: 1;
-}
-
-
-      
-    .html-element {
-   position: absolute;
-   background: #3498DB;
-   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
-   pointer-events: none;
-   -webkit-user-select: none;
-   border-radius: 4px;
-   border: 2px solid #2980B9;
-   box-shadow: inset 0 0 5px black, 2px 2px 1px gray;
-   padding: 5px;
-   box-sizing: border-box;
-   z-index: 3;
-}
-.html-element select,
-.html-element input,
-.html-element button {
-   /* Enable interacting with inputs only. */
-   pointer-events: auto;   
-}
-.html-element button.delete {
-   color: white;
-   border: none;
-   background-color: #C0392B;
-   border-radius: 20px;
-   width: 15px;
-   height: 15px;
-   line-height: 15px;
-   text-align: middle;
-   position: absolute;
-   top: -15px;
-   left: -15px;
-   padding: 0;
-   margin: 0;
-   font-weight: bold;
-   cursor: pointer;
-}
-.html-element button.delete:hover {
-   width: 20px;
-   height: 20px;
-   line-height: 20px;
-}
-.html-element select {
-   position: absolute;
-   right: 2px;
-   bottom: 28px;
-}
-.html-element input {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   border: none;
-   color: #333;
-   padding: 5px;
-   height: 16px;
-}
-.html-element label {
-   color: #333;
-   text-shadow: 1px 0 0 lightgray;
-   font-weight: bold;
-}
-.html-element span {
-   position: absolute;
-   top: 2px;
-   right: 9px;
-   color: white;
-   font-size: 10px;
-}
-    </style>
-    
     
   </head>
   <!--
@@ -262,104 +173,158 @@ scratch. This page gets rid of all links and provides the needed markup only.
             var graph = new joint.dia.Graph;
 
             graph.on('all', function(eventName, cell) {
+			
 
-		var n = eventName.indexOf("change");
-		if(n == -1){
-                    console.log(arguments);
-		    var n2 = eventName.indexOf("batch");
+					//var n = eventName.indexOf("change");
+					//if(n == -1){
+				      //  console.log(arguments);
+					  //  var n2 = eventName.indexOf("batch");
 
-		    if(eventName != "sort" && n2 == -1){
-			$("#items").append(eventName + " - ");
-			if(arguments[1] != null)
-			    $("#items").append(arguments[1].id + "</br>");
-		    }
-		    else	
-			$("#items").append(eventName + "</br>");
-		}
+					  //  if(eventName != "sort" && n2 == -1){
+						//$("#items").append(eventName + " - ");
+						//if(arguments[1] != null)
+						//    $("#items").append(arguments[1].id + arguments[1].type + "</br>");
+					  //  }
+					  //  else	
+						//$("#items").append(eventName + "</br>");
+					//}
 
-            });
-
-	    var paper = new joint.dia.Paper({ 
-		el: $('#paper-create'), 
-		width: 1100, 
-		height: 500, 
-		gridSize: 1,
-		model: graph, 
-		defaultLink: new joint.dia.Link({
-		      attrs: { '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' } }
-		}),
-		validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
-                    // Prevent linking from input ports.
-                    if (magnetS && magnetS.getAttribute('type') === 'input') return false;
-		    // Prevent linking from output ports to input ports within one element.
-                    if (cellViewS === cellViewT) 
-			return false;
-
-		    if(magnetS.getAttribute('port') === 'out1'){
-
-			var portUsed = _.find(this.model.getLinks(), function(link) {
-
-			    return (link.id !== linkView.model.id &&
-				    link.get('target').id === cellViewT.model.id &&
-				    link.get('target').port === magnetT.getAttribute('port') &&
-				    magnetT && magnetT.getAttribute('port') === 'in1'); 
 			});
 
-			return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
+				var paper = new joint.dia.Paper({ 
+					el: $('#paper-create'), 
+					width: 1100, 
+					height: 500, 
+					gridSize: 1,
+					model: graph, 
+					defaultLink: new joint.dia.Link({
+						  attrs: { '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' } }
+					}),
+					validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
 
-		    }
+					  // Prevent linking from input ports.
+					  if (magnetS && magnetS.getAttribute('type') === 'input')
+						  return false;
+					  // Prevent linking from output ports to input ports within one element.
+					  if (cellViewS === cellViewT)
+						  return false;
+					  
+					  if (magnetS.getAttribute('port') === 'out1') {
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in1');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
+					  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out2') {
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in2');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
+					  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out3') {
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in3');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
+					  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out4'){
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in4');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in4';
+						  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out5'){
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in5');
+						  });
+					 
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in5';
+						  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out6'){
+					  
+						var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in6');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in6';
+						  
+					  }
+					  
+					  if (magnetS.getAttribute('port') === 'out7'){
+					  
+						  var portUsed = _.find(this.model.getLinks(), function(link) {
+					  
+							  return (link.id !== linkView.model.id &&
+								  link.get('target').id === cellViewT.model.id &&
+								  link.get('target').port === magnetT.getAttribute('port') &&
+								  magnetT && magnetT.getAttribute('port') === 'in7');
+						  });
+					  
+						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in7';
+						 
+					  }
+					  
+				  
+				  // check whether the port is being already used
+				  },
+				  validateMagnet: function(cellView, magnet) {
+						  // Note that this is the default behaviour. Just showing it here for reference.
+						  // Disable linking interaction for magnets marked as passive (see below `.inPorts circle`).
+						  return magnet.getAttribute('magnet') !== 'passive';
+					  },
+					  // Enable marking available cells & magnets
+					  markAvailable: true
+				  });
 
-		    if(magnetS.getAttribute('port') === 'out2'){
+		</script>
 
-			var portUsed = _.find(this.model.getLinks(), function(link) {
-
-			    return (link.id !== linkView.model.id &&
-				    link.get('target').id === cellViewT.model.id &&
-				    link.get('target').port === magnetT.getAttribute('port') &&
-				    magnetT && magnetT.getAttribute('port') === 'in2'); 
-			});
-
-			return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
-
-		    }
-
-		    if(magnetS.getAttribute('port') === 'out3'){
-
-			var portUsed = _.find(this.model.getLinks(), function(link) {
-
-			    return (link.id !== linkView.model.id &&
-				    link.get('target').id === cellViewT.model.id &&
-				    link.get('target').port === magnetT.getAttribute('port') &&
-				    magnetT && magnetT.getAttribute('port') === 'in3'); 
-			    });
-
-			    return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
-
-                    }
-
-		    if(magnetS.getAttribute('port') === 'out4')
-			return magnetT && magnetT.getAttribute('port') === 'in4';
-		    if(magnetS.getAttribute('port') === 'out5')
-			return magnetT && magnetT.getAttribute('port') === 'in5';
-		    if(magnetS.getAttribute('port') === 'out6')
-			return magnetT && magnetT.getAttribute('port') === 'in6';
-		    if(magnetS.getAttribute('port') === 'out7')
-			return magnetT && magnetT.getAttribute('port') === 'in7';						
-
-                // check whether the port is being already used
-                },
-		validateMagnet: function(cellView, magnet) {
-		    // Note that this is the default behaviour. Just showing it here for reference.
-                    // Disable linking interaction for magnets marked as passive (see below `.inPorts circle`).
-		    return magnet.getAttribute('magnet') !== 'passive';
-		},
-		// Enable marking available cells & magnets
-		markAvailable: true
-            });
-
-            </script>
 
     <div id="items"></div>
+          <div style="float:right;height:50px;"><button style="width:150px; height:30px;" id="btnSave" type="button">Salvar</div></div>
+      
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -374,7 +339,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id="btnCancelEdit" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" id="btnSaveJson" class="btn btn-primary" data-dismiss="modal">Save</button>
         </div>
       </div>
