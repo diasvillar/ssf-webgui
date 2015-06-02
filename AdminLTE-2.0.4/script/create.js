@@ -55,6 +55,12 @@ $(document).ready(function(){
     $('#btnSave').click(function(){
 		
 		var oneLink;
+		
+		for(var i = jsonToSave.length; i--;) {
+			for (var x = jsonToSave[i].links.length; x--;){
+			   jsonToSave[i].links.splice(i, 1);
+			}
+		}
         
         if(typeof jsonToSave !== 'undefined' && jsonToSave.length > 0){
 			
@@ -76,14 +82,16 @@ $(document).ready(function(){
 				var obj = jsonToSave[i];
 				alert(JSON.stringify(obj));	
 			}
+			
+			var jsonString = JSON.stringify(graph);
+			alert (jsonString);
 		}
-        
+		
+		allLinks = null;
+		linkToJson = null;
+    
     });
-    
-    
-    
-    
-    
+
 });
 
 function findObjectInJson(idToFind)
