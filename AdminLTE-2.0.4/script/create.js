@@ -8,6 +8,7 @@ var currentIdJson;
 var jsonToSave;
 var currentObjId;
 var linkToJson;
+var PositionToJson;
 
 
 
@@ -64,7 +65,8 @@ $(document).ready(function(){
         
         if(typeof jsonToSave !== 'undefined' && jsonToSave.length > 0){
 			
-			allLinks = graph.getLinks();
+			var allLinks = graph.getLinks();
+			var allCells = graph.getElements();
 			
 			for (var x = 0; x< allLinks.length; x++)
 			{
@@ -77,14 +79,27 @@ $(document).ready(function(){
 				createLinkInJson(linkToJson.source.id, linkToJson.target.id, linkToJson.source.port, linkToJson.target.port);
 			}
 			
+			for (var x = 0; x< allCells.length; x++)
+			{
+				
+				PositionToJson = allCells[x].toJSON();
+				if(PositionToJson.type === 'html.Element'){
+					
+					newPosition(PositionToJson.position.x, PositionToJson.position.y, PositionToJson.id);
+					//alert (PositionToJson.position.x);
+					//alert (PositionToJson.position.y);
+					//alert (PositionToJson.id);
+				}
+			}
+			
 			for(var i =0; i < jsonToSave.length; i++)
 			{
 				var obj = jsonToSave[i];
 				alert(JSON.stringify(obj));	
 			}
 			
-			var jsonString = JSON.stringify(graph);
-			alert (jsonString);
+			//var jsonString = graph.getElements();
+			//alert (JSON.stringify(jsonString));
 		}
 		
 		allLinks = null;
@@ -338,7 +353,7 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y, object
     initialize: function() {
         _.bindAll(this, 'updateBox');
         joint.dia.ElementView.prototype.initialize.apply(this, arguments);
-
+		
         this.$box = $(_.template(this.template)());
         // Prevent paper from handling pointerdown.
         this.$box.find('input,select').on('mousedown click', function(evt) { evt.stopPropagation(); });
@@ -479,7 +494,20 @@ function createLinkInJson(sourceId, targetId, sourcePort, targetPort){
 			  var text = '{ "targetId":"'+target+'" , "saida":"'+sourcePort+'" , "entrada":"'+targetPort+'" }';
 			  var obj = JSON.parse(text);
 			  jsonToSave[i].links[jsonToSave[i].links.length] = obj;
-             // alert (JSON.stringify(jsonToSave[i].links));
+			  
           }
       }
+}
+
+function newPosition(posX, posY, elementId){
+	
+	for(var i =  jsonToSave.length; i--;) {
+          if( jsonToSave[i].jointId === elementId) {
+			  
+              jsonToSave[i].posX = posX;
+			  jsonToSave[i].posY = posY;
+			  
+          }
+      }
+	
 }

@@ -124,6 +124,9 @@ very thin.
    vector-effect: non-scaling-stroke;
 }
 
+.marker-arrowheads {
+    display: none;
+}
 /* 
 
 Vertex markers are `<circle>` elements that appear at connection vertex positions.

@@ -170,155 +170,199 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	    <div id="paper-create"></div>
 
 	    <script type="text/javascript">
+		
+			var batchStop = 0;
             var graph = new joint.dia.Graph;
-
-            graph.on('all', function(eventName, cell) {
 			
-
-					//var n = eventName.indexOf("change");
-					//if(n == -1){
-				      //  console.log(arguments);
-					  //  var n2 = eventName.indexOf("batch");
-
-					  //  if(eventName != "sort" && n2 == -1){
-						//$("#items").append(eventName + " - ");
-						//if(arguments[1] != null)
-						//    $("#items").append(arguments[1].id + arguments[1].type + "</br>");
-					  //  }
-					  //  else	
-						//$("#items").append(eventName + "</br>");
-					//}
-
-			});
+//			            graph.on('all', function(eventName, cell) {
+//			
+//
+//					//var n = eventName.indexOf("change");
+//					//if(n == -1){
+//				        console.log(arguments);
+//					    //var n2 = eventName.indexOf("batch");
+//
+//					    //if(eventName != "sort" && n2 == -1){
+//						$("#items").append(eventName + " - ");
+//						if(arguments[1] != null){
+//						    $("#items").append(arguments[1].id + arguments[1].type + "</br>");
+//					    }
+//					    else	
+//						$("#items").append(eventName + "</br>");
+//					
+//
+//			});
+			
 
 				var paper = new joint.dia.Paper({ 
 					el: $('#paper-create'), 
 					width: 1100, 
 					height: 500, 
 					gridSize: 1,
-					model: graph, 
+					model: graph,
+					interactive: { 
+								vertexAdd: false,
+								arrowheadMove : false
+					},
 					defaultLink: new joint.dia.Link({
-						  attrs: { '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' } }
+						  router: { name: 'manhattan' },
+						  connector: { name: 'rounded' },
+						  attrs: {   
+									'.connection': {
+									stroke: '#333333',
+									'stroke-width': 3
+									},
+									'.marker-target': { 
+										fill: '#333333',
+										d: 'M 10 0 L 0 5 L 10 10 z' 
+									}
+								}
 					}),
 					validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
-
+					  
 					  // Prevent linking from input ports.
-					  if (magnetS && magnetS.getAttribute('type') === 'input')
-						  return false;
-					  // Prevent linking from output ports to input ports within one element.
-					  if (cellViewS === cellViewT)
-						  return false;
-					  
-					  if (magnetS.getAttribute('port') === 'out1') {
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in1');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
-					  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out2') {
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in2');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
-					  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out3') {
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in3');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
-					  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out4'){
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in4');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in4';
+						  if (magnetS && magnetS.getAttribute('type') === 'input')
+							  return false;
+						  // Prevent linking from output ports to input ports within one element.
+						  if (cellViewS === cellViewT)
+							  return false;
 						  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out5'){
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in5');
-						  });
-					 
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in5';
+						  if (magnetS.getAttribute('port') === 'out1') {
 						  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out6'){
-					  
-						var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in6');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in6';
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+								
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in1');
+							  });
 						  
-					  }
-					  
-					  if (magnetS.getAttribute('port') === 'out7'){
-					  
-						  var portUsed = _.find(this.model.getLinks(), function(link) {
-					  
-							  return (link.id !== linkView.model.id &&
-								  link.get('target').id === cellViewT.model.id &&
-								  link.get('target').port === magnetT.getAttribute('port') &&
-								  magnetT && magnetT.getAttribute('port') === 'in7');
-						  });
-					  
-						  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in7';
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
+						  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out2') {
+						  
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in2');
+							  });
+						  
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
+						  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out3') {
+						  
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in3');
+							  });
+						  
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
+						  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out4'){
+						  
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in4');
+							  });
+						  
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in4';
+							  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out5'){
+						  
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in5');
+							  });
 						 
-					  }
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in5';
+							  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out6'){
+						  
+							var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in6');
+							  });
+						  
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in6';
+							  
+						  }
+						  
+						  if (magnetS.getAttribute('port') === 'out7'){
+						  
+							  var portUsed = _.find(this.model.getLinks(), function(link) {
+						  
+								  return (link.id !== linkView.model.id &&
+									  link.get('target').id === cellViewT.model.id &&
+									  link.get('target').port === magnetT.getAttribute('port') &&
+									  magnetT && magnetT.getAttribute('port') === 'in7');
+							  });
+						  
+							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in7';
+							 
+						  }
 					  
-				  
+					
 				  // check whether the port is being already used
 				  },
+				  
 				  validateMagnet: function(cellView, magnet) {
 						  // Note that this is the default behaviour. Just showing it here for reference.
 						  // Disable linking interaction for magnets marked as passive (see below `.inPorts circle`).
 						  return magnet.getAttribute('magnet') !== 'passive';
 					  },
+					  
 					  // Enable marking available cells & magnets
-					  markAvailable: true
+					  markAvailable: true,				  
+					  
 				  });
-
+				  
+					paper.model.on('batch:stop', function () {
+						
+						if (batchStop == 0 ){
+							batchStop++;
+						}
+						else{
+							batchStop = 0;
+							var links = paper.model.getLinks();
+							_.each(links, function (link) {
+								var source = link.get('source');
+								var target = link.get('target');
+								if (source.id === undefined || target.id === undefined) {
+									link.remove();
+								}
+							});
+						}
+					});
+					
+					paper.model.on('remove', function () {
+						
+						batchStop = 0;
+					});
+			
 		</script>
 
 
