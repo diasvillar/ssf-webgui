@@ -14,6 +14,8 @@ var PositionToJson;
 
  
 $(document).ready(function(){
+	
+	$("#export").hide();
     
     $('#btnSaveJson').click(function(){
         
@@ -27,7 +29,14 @@ $(document).ready(function(){
 				
 				if(currentAttr.type == 'bool'){
 					
-					var valueInputed = $("#bool").val();
+					var radioValues = document.getElementsByName('bool');
+				    var i = 0;
+				    for(i; i<radioValues.length; i++){
+					   if(radioValues[i].checked){
+						  var valueInputed = radioValues[i].value;
+						  break;
+					   }
+				    }
 				}
                 else{
 					var valueInputed = $('#' + currentModChild + '_' +currentAttr.name + '_value').val();
@@ -53,9 +62,9 @@ $(document).ready(function(){
         
     });
     
-    $('#btnSave').click(function(){
-		
-		var oneLink;
+    $('#btnSave').bind('click', function(){
+
+		var data = "";
 		
 		for(var i = jsonToSave.length; i--;) {
 			for (var x = jsonToSave[i].links.length; x--;){
@@ -91,12 +100,20 @@ $(document).ready(function(){
 					//alert (PositionToJson.id);
 				}
 			}
-			
+			var data = data + '{ "model":[';
 			for(var i =0; i < jsonToSave.length; i++)
 			{
-				var obj = jsonToSave[i];
-				alert(JSON.stringify(obj));	
+				if (i != jsonToSave.length-1){
+					var obj = jsonToSave[i];
+					data = data + JSON.stringify(obj) + ',';
+				}
+				else{
+					var obj = jsonToSave[i];
+					data = data + JSON.stringify(obj);
+				}
+				//alert(JSON.stringify(obj));	
 			}
+			data = data + ']}';
 			
 			//var jsonString = graph.getElements();
 			//alert (JSON.stringify(jsonString));
@@ -104,9 +121,11 @@ $(document).ready(function(){
 		
 		allLinks = null;
 		linkToJson = null;
-    
+		
+		$("#export").attr('download','jsonSaida.txt');
+		$("#export").attr('href', 'data:application/x-json;base64,' + btoa(data)).show();
     });
-
+	
 });
 
 function findObjectInJson(idToFind)
@@ -123,13 +142,8 @@ function findObjectInJson(idToFind)
                 return jsonObj;
                 
             }
-        
         } 
-        
     }
-    
-    
-    
 }
 
 function allowDrop(ev){
@@ -228,8 +242,8 @@ function createAttributes(atributos, moduloChild)
     
     $('#here_table').html("");
     
-    var $table = $('<table width="100%" border="1" id="' + moduloChild + '_table" class="table_atributes" />');
-    $table.append( '<tr><td>Atributo</td><td>Tipo</td><td>Valor</td></tr>' );
+    var $table = $('<table width="100%" border="1px" id="' + moduloChild + '_table" class="table_atributes" />');
+    $table.append( '<tr><th>Atributo</th><th>Tipo</th><th>Valor</th></tr>' );
 
 
     for(var i = 0; i < atributos.length; i++)
@@ -237,22 +251,18 @@ function createAttributes(atributos, moduloChild)
 		
 		if( atributos[i].type == 'bool'){
 			if(atributos[i].default == 'false'){
-				$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><select id="bool"> <option>' + atributos[i].default + '</option> <option>true</option></select></td></tr>' );
+				$table.append( '<tr><td align="center">' + atributos[i].name  + '</td><td align="center">' + atributos[i].type + '</td><td align="center"><input type="radio" name="bool" value="false" checked> ' + atributos[i].default + ' <input type="radio" name="bool" value="true"> true </td></tr>' );
 			}else{
-				$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><select id="bool"> <option>' + atributos[i].default + '</option> <option>false</option></select></td></tr>' );
+				$table.append( '<tr><td align="center">' + atributos[i].name  + '</td><td align="center">' + atributos[i].type + '</td><td align="center"><input type="radio" name="bool" value="true" checked> ' + atributos[i].default + ' <input type="radio" name="bool" value="false"> false </td></tr>' );
 			}
 		}
 		else{
-			$table.append( '<tr><td>' + atributos[i].name  + '</td><td>' + atributos[i].type + '</td><td><input type="text" id="'+ moduloChild+'_'+ atributos[i].name +'_value" value="'+ atributos[i].default +'" width="100%"/></td></tr>' );
+			$table.append( '<tr><td align="center">' + atributos[i].name  + '</td><td align="center">' + atributos[i].type + '</td><td align="center"><input type="text" id="'+ moduloChild+'_'+ atributos[i].name +'_value" value="'+ atributos[i].default +'" width="100%"/></td></tr>' );
         }
     }
     
     $('#here_table').append($table);
-    
-    
-
-    
-    
+	
 }
 
 function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y, objectId) {
@@ -346,7 +356,7 @@ function createModel(name, moduloRoot, moduloChild, entrada, saida, x, y, object
 			'<label></label>',
             '<br/>',
 			'<br/>',
-            '<button id="'+ moduloChild + '" idpai="' + moduloRoot + '" idInJson="' + objectId + '" type="button" data-toggle="modal" data-target="#exampleModal">Attributes</button>',
+            '<button id="'+ moduloChild + '" idpai="' + moduloRoot + '" idInJson="' + objectId + '" type="button" data-toggle="modal" data-target="#exampleModal">Parameters</button>',
 			'</div>'
         ].join(''),
 
@@ -487,7 +497,6 @@ function createLinkInJson(sourceId, targetId, sourcePort, targetPort){
           }
       }
 	
-	
 	for(var i =  jsonToSave.length; i--;) {
           if( jsonToSave[i].jointId === sourceId) {
 			  
@@ -508,6 +517,5 @@ function newPosition(posX, posY, elementId){
 			  jsonToSave[i].posY = posY;
 			  
           }
-      }
-	
+      }	
 }
