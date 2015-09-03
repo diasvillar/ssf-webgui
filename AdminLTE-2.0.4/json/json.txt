@@ -1,9 +1,9 @@
 { 
-	"modulo_tipo_a" :[
+	"Recognition" :[
 			{
-					"modulo_1":
+					"ModEventRecognition":
 					{
-							"name":"modulo1",
+							"name":"ModEventRecognition",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_1"},
 								{"name":"entrada_2", "type":"type_2"},
@@ -15,13 +15,13 @@
 							],
 							"atributos":[
 								{"name":"resultado", "type":"double", "default":"1"},
-								{"name":"terminado", "type":"bool", "default":"false"} 
+								{"name":"terminado", "type":"bool", "default":"false"}
 							
 							]
 					},
-					"modulo_2":
+					"ModEventValid":
 					{
-							"name":"modulo2",
+							"name":"ModEventValid",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"}
 							],
@@ -32,14 +32,14 @@
 								{"name":"saida_4", "type":"type_6"}
 							],
 							"atributos":[
-								{"name":"nome", "type":"string", "default":"teste_2"},
+								{"name":"nome", "type":"string", "default":"Public event"},
 								{"name":"valor", "type":"int", "default":"99"}
 							
 							]
 					},
-					"modulo_3":
+					"ModOAAPLSClusterRecognition":
 					{
-							"name":"modulo3",
+							"name":"ModOAAPLSClusterRecognition",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_1"},
 								{"name":"entrada_2", "type":"type_2"},
@@ -53,14 +53,14 @@
 								{"name":"saida_1", "type":"type_6"}
 							],
 							"atributos":[
-								{"name":"resultado", "type":"double", "default":"1"},
+								{"name":"nome", "type":"string", "default":"teste_2"},
 								{"name":"terminado", "type":"bool", "default":"false"}
 							
 							]
 					},
-					"modulo_4":
+					"ModOAAPLSRecognition":
 					{
-							"name":"modulo4",
+							"name":"ModOAAPLSRecognition",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_3"}
 							],
@@ -73,9 +73,9 @@
 							
 							]
 					},
-					"modulo_5":
+					"ModObjectDetectionBOW":
 					{
-							"name":"modulo5",
+							"name":"ModObjectDetectionBOW",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_3"}
@@ -89,9 +89,9 @@
 							
 							]
 					},
-					"modulo_6":
+					"ModPLSOnline":
 					{
-							"name":"modulo6",
+							"name":"ModPLSOnline",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_5"},
@@ -112,11 +112,11 @@
 					}
 			}
 	],
-	"modulo_tipo_b" :[
+	"Detection" :[
 			{
-					"modulo_7":
+					"ModDetectInTracklet":
 					{
-							"name":"modulo7",
+							"name":"ModDetectInTracklet",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_1"},
 								{"name":"entrada_2", "type":"type_2"},
@@ -135,9 +135,9 @@
 							
 							]
 					},
-					"modulo_8":
+					"ModRandomSamples":
 					{
-							"name":"modulo8",
+							"name":"ModRandomSamples",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_6"},
@@ -157,9 +157,9 @@
 							
 							]
 					},
-					"modulo_9":
+					"ModDetector":
 					{
-							"name":"modulo9",
+							"name":"ModDetector",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_1"},
 								{"name":"entrada_2", "type":"type_5"},
@@ -175,9 +175,9 @@
 							
 							]
 					},
-					"modulo_10":
+					"ModDrawCropped":
 					{
-							"name":"modulo10",
+							"name":"ModDrawCropped",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_6"},
 								{"name":"entrada_2", "type":"type_3"}
@@ -196,9 +196,9 @@
 							
 							]
 					},
-					"modulo_11":
+					"ModUnenrolled":
 					{
-							"name":"modulo11",
+							"name":"ModUnenrolled",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_3"},
@@ -222,9 +222,9 @@
 							
 							]
 					},
-					"modulo_12":
+					"ModHaarDetector":
 					{
-							"name":"modulo12",
+							"name":"ModHaarDetector",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_1"},
 								{"name":"entrada_2", "type":"type_4"},
@@ -251,11 +251,11 @@
 					}
 			}
 	],
-	"modulo_tipo_c" :[
+	"Utils" :[
 			{
-					"modulo_13":
+					"ModScaleManager":
 					{
-							"name":"modulo13",
+							"name":"ModScaleManager",
 							"entradas":[
 							],
 							"saidas":[
@@ -266,9 +266,9 @@
 							
 							]
 					},
-					"modulo_14":
+					"ModDetectionEvaluation":
 					{
-							"name":"modulo14",
+							"name":"ModDetectionEvaluation",
 							"entradas":[
 							],
 							"saidas":[
@@ -281,9 +281,9 @@
 							
 							]
 					},
-					"modulo_15":
+					"ModLoadDistributor":
 					{
-							"name":"modulo15",
+							"name":"ModLoadDistributor",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"},
 								{"name":"entrada_2", "type":"type_5"},
@@ -297,9 +297,9 @@
 							
 							]
 					},
-					"modulo_16":
+					"ModEvaluateRecognition":
 					{
-							"name":"modulo16",
+							"name":"ModEvaluateRecognition",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_5"},
 								{"name":"entrada_2", "type":"type_1"},
@@ -315,9 +315,9 @@
 							
 							]
 					},
-					"modulo_17":
+					"ModOpticalFlow":
 					{
-							"name":"modulo17",
+							"name":"ModOpticalFlow",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_4"}
 							],
@@ -329,9 +329,9 @@
 							
 							]
 					},
-					"modulo_18":
+					"ModFeatureExtraction":
 					{
-							"name":"modulo18",
+							"name":"ModFeatureExtraction",
 							"entradas":[
 							],
 							"saidas":[
@@ -350,11 +350,11 @@
 					}
 			}
 	],
-	"modulo_tipo_d" :[
+	"Input/Output" :[
 			{
-					"modulo_19":
+					"AnnotationTool":
 					{
-							"name":"modulo19",
+							"name":"AnnotationTool",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_7"},
 								{"name":"entrada_2", "type":"type_3"},
@@ -371,9 +371,9 @@
 							
 							]
 					},
-					"modulo_20":
+					"ModDrawTracklet":
 					{
-							"name":"modulo20",
+							"name":"ModDrawTracklet",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_3"},
 								{"name":"entrada_2", "type":"type_1"},
@@ -391,9 +391,9 @@
 							
 							]
 					},
-					"modulo_21":
+					"ModWrite":
 					{
-							"name":"modulo21",
+							"name":"ModWrite",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_6"},
 								{"name":"entrada_2", "type":"type_3"},
@@ -413,9 +413,9 @@
 							
 							]
 					},
-					"modulo_22":
+					"ModFile":
 					{
-							"name":"modulo22",
+							"name":"ModFile",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_3"},
 								{"name":"entrada_2", "type":"type_4"},
@@ -438,9 +438,9 @@
 							
 							]
 					},
-					"modulo_23":
+					"ModSaveFeatures":
 					{
-							"name":"modulo23",
+							"name":"ModSaveFeatures",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_2"},
 								{"name":"entrada_2", "type":"type_6"},
@@ -461,9 +461,9 @@
 							
 							]
 					},
-					"modulo_24":
+					"ModVideoInput":
 					{
-							"name":"modulo24",
+							"name":"ModVideoInput",
 							"entradas":[
 								{"name":"entrada_1", "type":"type_5"},
 								{"name":"entrada_2", "type":"type_1"}

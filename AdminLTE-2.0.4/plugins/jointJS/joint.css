@@ -267,7 +267,7 @@ select {width:43%;}
 #paper-create svg .link {
    z-index: 2;
 }
-      
+ /* Início - Estilo dos módulos que representam Recognition (cores, tamanhos, botões...)*/     
 .html-element {
    position: absolute;
    background: #3498DB;
@@ -336,8 +336,10 @@ select {width:43%;}
    color: white;
    font-size: 10px;
 }
-
-
+ /* Fim - Estilo dos módulos que representam Recognition (cores, tamanhos, botões...)*/ 
+ 
+ 
+ /* Início - Estilo dos módulos que representam Detection (cores, tamanhos, botões...)*/ 
 .html-element2 {
    position: absolute;
    background: #34DB77;
@@ -406,9 +408,9 @@ select {width:43%;}
    color: white;
    font-size: 10px;
 }
+ /* Fim - Estilo dos módulos que representam Detection (cores, tamanhos, botões...)*/ 
 
-
-
+ /* Início - Estilo dos módulos que representam Utils (cores, tamanhos, botões...)*/ 
 .html-element3 {
    position: absolute;
    background: #89AA96;
@@ -477,9 +479,9 @@ select {width:43%;}
    color: white;
    font-size: 10px;
 }
+ /* Fim - Estilo dos módulos que representam Utils (cores, tamanhos, botões...)*/ 
 
-
-
+ /* Início - Estilo dos módulos que representam Input/Output (cores, tamanhos, botões...)*/ 
 .html-element4 {
    position: absolute;
    background: #B28F66;
@@ -548,7 +550,9 @@ select {width:43%;}
    color: white;
    font-size: 10px;
 }
+ /* Fim - Estilo dos módulos que representam Input/Output (cores, tamanhos, botões...)*/ 
 
+ /* Início - Estilo das tabelas que abrem após clicar no botão Parameters de um módulo*/ 
 table th{
     text-align:center;
     padding-top:9px;
@@ -564,9 +568,12 @@ table td, th{
 	background-color:#e8eaea;
 }
 
+/* O valor do parâmetro que pode ser alterado será apresentado na posição central */ 
 input {
 text-align: center;
 }
+
+/* Fim - Estilo das tabelas que abrem após clicar no botão Parameters de um módulo*/ 
 
 /* port styling */
 .available-magnet {
@@ -577,3 +584,43 @@ text-align: center;
 .available-cell rect {
     stroke-dasharray: 5, 2;
 }
+
+/*Início - Estilo do botão de importar*/ 
+.fileUpload {
+	float: right;
+    position: fixed;
+    overflow: hidden;
+    right: 200px;
+	-webkit-appearance: button;
+    -webkit-font-smoothing: auto;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    height: 30px;
+    line-height: 20px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    text-transform: none;
+    width: 150px;
+	
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+/*Fim - Estilo do botão de importar*/ 

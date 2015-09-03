@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>SSF - Smart Surveillance Framework</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<!-- Título da página -->
+    <title>SSF - Smart Surveillance Framework</title> 
     <!-- Bootstrap 3.3.2 -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -21,86 +19,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link href="dist/css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
+	<!-- Joint Style -->
     <link rel="stylesheet" href="plugins/jointJS/joint.css" />
+	<!-- Plugin para poder trabalhar com JointJS -->
     <script src="plugins/jointJS/joint.js"></script>
+	<!-- Plugin para poder trabalhar com formatos disponíveis no JointJS -->
     <script src="plugins/jointJS/joint.shapes.devs.js"></script>
-	
+	<!-- Script para criar o layout lateral de forma dinâmica -->
 	<script>
 	
-		var HTML_FILE_URL = './json/jsonEntrada.txt';	
+		var HTML_FILE_URL = './json/jsonEntrada.txt';	//Caminho do JSON de entrada na máquina local
 		var moduleRoot = [];
 		var moduleChild = [];
 		var id = [];
 		
-		
-		$.get(HTML_FILE_URL, function(data){
+		$.get(HTML_FILE_URL, function(data){ //recebe o conteúdo do JSON de entrada e atribui esses valores à variável data
 			
-			var obj = JSON.parse(data);
+			var obj = JSON.parse(data); // transforma os dados da variável data em um um objeto obj
 			var x = 1;
-			for (var i = 0; i < obj["model"].length; i++){
+			for (var i = 0; i < obj["model"].length; i++){ // loop para criar os dados que serão inserids no HTML do layout do menu lateral, de acordo com a quantidade de módulos
 				
-				if(i === 0 ){
-					id[i] = obj["model"][i].root + '|' + obj["model"][i].child;
-					//alert (id[i]);
-					moduleRoot[i] = obj["model"][i].root;
-					//alert (moduleRoot[i]);
-					moduleChild[i] = obj["model"][i].child;
-					//alert (moduleChild[i]);
+				if(i === 0 ){// grava os valores em vetores para posteriormente inseri-los no body do HTML através da função innerHTML
+					id[i] = obj["model"][i].root + '|' + obj["model"][i].child; // concatena os valores na variavel id. Esse id é o mesmo no HTML referente ao seu módulo especifico
+					moduleRoot[i] = obj["model"][i].root; // nome do tipo do módulo
+					moduleChild[i] = obj["model"][i].child; // nome real do módulo
 				}
-				else {
+				else {  
 						if(moduleRoot[x-1] === obj["model"][i].root){
 							id[i] = obj["model"][i].root + '|' + obj["model"][i].child;
-							
 							moduleChild[i] = obj["model"][i].child;
-							//alert (moduleChild[i]);
 						}
 						else{
 							id[i] = obj["model"][i].root + '|' + obj["model"][i].child;
-							//alert (id[x]);
 							moduleRoot[x] = obj["model"][i].root;
-							//alert (moduleRoot[x]);
 							moduleChild[i] = obj["model"][i].child;
-							//alert (moduleChild[i]);
 							x++;
 						}
-					
 					}
-				
 			}
 			
 			for(var i = 0; i < moduleRoot.length; i++){
-			
+				/*No body do HTML existe um elemento chamado sidelayout. É nele que é criado o layout do menu lateral.
+				Após recebermos os valores do JSON de entrada de cada módulo e guardá-los em um vetor, precisamos percorrer
+				esse vetor inserindo na posoção do HTML esses valores. Para isso é usado a função innerHTML.*/
 				document.getElementById("sidelayout").innerHTML += '<li class="treeview">\n'+'<a href="#">'+'<span>'+moduleRoot[i]+'</span>'+'<i class="fa fa-angle-left pull-right"></i></a>'+'<ul id="child'+i+'" class="treeview-menu">';
 				for(var x = 0; x < moduleChild.length; x++){
+					
 					var verifica = id[x].split("|");
 					if(moduleRoot[i] === verifica[0]){
 						document.getElementById("child"+i).innerHTML += '<li><a href="#" id='+id[x]+' draggable="true" ondragstart="drag(event)">'+moduleChild[x]+'</a></li>';
 					}
 				}
-
 			}
-
 		});
-		
-			
-	</script>
-	
-	
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="script/create.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-	
-	
 
+	</script>
+	<!-- Biblioteca para jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- Script contendo as funções aplicadas na interface de gerenciamento do SSF -->
+    <script src="script/create.js"></script>
     
   </head>
-  <!--
-  BODY TAG OPTIONS:
+  <!-- BODY TAG OPTIONS:
   =================
   Apply one or more of the following classes to get the 
   desired effect
@@ -119,334 +99,392 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |---------------------------------------------------------|
   
   -->
-  <body class="skin-blue">
-    <div class="wrapper">
-
-      <!-- Main Header -->
-      <header class="main-header">
-
-        <!-- Logo -->
-        <a href="starter.html" class="logo"><b>SSF</b></a>
-
-        <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less -->
-            </ul>
-          </div>
-        </nav> 
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-
-          <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
-          <!-- /.search form -->
-
-		  
-		  
-          <!-- Sidebar Menu -->
-          <ul id="sidelayout" class="sidebar-menu">
-            <li class="header">MODULOS</li>
-          </ul><!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-      </aside>
-	  	  
-	 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)" id="dashboardMain">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Dashboard
-           <!-- <small>Optional description</small> -->
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-          </ol>
-        </section>
-
-         <!-- Main content -->
-        <section class="content">
-
-
-	    <div id="paper-create"></div>
-
-	    <script type="text/javascript">
-		
-			var batchStop = 0;
-            var graph = new joint.dia.Graph;
-			
-//			            graph.on('all', function(eventName, cell) {
-//			
-//
-//					//var n = eventName.indexOf("change");
-//					//if(n == -1){
-//				        console.log(arguments);
-//					    //var n2 = eventName.indexOf("batch");
-//
-//					    //if(eventName != "sort" && n2 == -1){
-//						$("#items").append(eventName + " - ");
-//						if(arguments[1] != null){
-//						    $("#items").append(arguments[1].id + arguments[1].type + "</br>");
-//					    }
-//					    else	
-//						$("#items").append(eventName + "</br>");
-//					
-//
-//			});
-			
-
-				var paper = new joint.dia.Paper({ 
-					el: $('#paper-create'), 
-					width: 1100, 
-					height: 500, 
-					gridSize: 1,
-					model: graph,
-					interactive: { 
-								vertexAdd: false,
-								arrowheadMove : false
-					},
-					defaultLink: new joint.dia.Link({
-						  router: { name: 'metro' },
-						  connector: { name: 'rounded' },
-						  attrs: {   
-									'.connection': {
-									stroke: '#333333',
-									'stroke-width': 3
-									},
-									'.marker-target': { 
-										fill: '#333333',
-										d: 'M 10 0 L 0 5 L 10 10 z' 
-									}
-								}
-					}),
-					validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
-					  
-					  // Prevent linking from input ports.
-						  if (magnetS && magnetS.getAttribute('type') === 'input')
-							  return false;
-						  // Prevent linking from output ports to input ports within one element.
-						  if (cellViewS === cellViewT)
-							  return false;
-						  
-						  if (magnetS.getAttribute('port') === 'out1') {
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-								
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in1');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
-						  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out2') {
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in2');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
-						  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out3') {
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in3');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
-						  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out4'){
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in4');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in4';
-							  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out5'){
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in5');
-							  });
-						 
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in5';
-							  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out6'){
-						  
-							var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in6');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in6';
-							  
-						  }
-						  
-						  if (magnetS.getAttribute('port') === 'out7'){
-						  
-							  var portUsed = _.find(this.model.getLinks(), function(link) {
-						  
-								  return (link.id !== linkView.model.id &&
-									  link.get('target').id === cellViewT.model.id &&
-									  link.get('target').port === magnetT.getAttribute('port') &&
-									  magnetT && magnetT.getAttribute('port') === 'in7');
-							  });
-						  
-							  return !portUsed && magnetT && magnetT.getAttribute('port') === 'in7';
-							 
-						  }
-					  
+	<body class="skin-blue">
+		<div class="wrapper">
+			<!-- Main Header -->
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="starter.html" class="logo"><b>SSF</b></a>
+				<!-- Header Navbar -->
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+						<span class="sr-only">Toggle navigation</span>
+					</a>
+					<!-- Navbar Right Menu -->
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+						<!-- Messages: style can be found in dropdown.less -->
+						</ul>
+					</div>
+				</nav> 
+			</header>
+      
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<!-- search form (Optional) -->
+					<form action="#" method="get" class="sidebar-form">
+						<div class="input-group">
+							<input type="text" name="q" class="form-control" placeholder="Search..."/>
+							<span class="input-group-btn">
+								<button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+							</span>
+						</div>
+					</form>
+					<!-- /.search form -->
 					
-				  // check whether the port is being already used
-				  },
-				  
-				  validateMagnet: function(cellView, magnet) {
-						  // Note that this is the default behaviour. Just showing it here for reference.
-						  // Disable linking interaction for magnets marked as passive (see below `.inPorts circle`).
-						  return magnet.getAttribute('magnet') !== 'passive';
-					  },
-					  
-					  // Enable marking available cells & magnets
-					  markAvailable: true,				  
-					  
-				  });
-				  
-					paper.model.on('batch:stop', function () {
-						
-						if (batchStop <= 1 ){
-							batchStop++;
-						}
-						else{
-							batchStop = 0;
-							var links = paper.model.getLinks();
-							_.each(links, function (link) {
-								var source = link.get('source');
-								var target = link.get('target');
-								if (source.id === undefined || target.id === undefined) {
-									link.remove();
+					<!-- Sidebar Menu -->
+					<ul id="sidelayout" class="sidebar-menu">
+						<li class="header">MODULOS</li>
+					</ul><!-- /.sidebar-menu -->
+				</section>
+				<!-- /.sidebar -->
+			</aside>
+	  	 
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)" id="dashboardMain">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>
+						Dashboard
+						<!-- <small>Optional description</small> -->
+					</h1>
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+						<li class="active">Here</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="content">
+					<div id="paper-create"></div>
+						<!-- Script para criar o graph e paper (local onde os módulos farão as interações entre eles na página web) 
+							 e para tratar tudo relacionado a links. a mudança da cor da bolinha que representa a entrada conforme 
+							 qual saída está sendo ativada. O tipo do link (rounded, metro). Validação dos links.
+						-->
+						<script type="text/javascript">
+							/*Dar uma lida nessas páginas pois elas explicam muito bem o que é feito nesse script (principalmente a terceira):
+									http://www.jointjs.com/tutorial#hello-world
+									http://www.jointjs.com/demos/links
+									http://www.jointjs.com/tutorial/ports
+							*/
+							var batchStop = 0;
+							var graph = new joint.dia.Graph;
+							var paper = new joint.dia.Paper({ 
+								el: $('#paper-create'), 
+								width: 1100, 
+								height: 500, 
+								gridSize: 1,
+								model: graph,
+								interactive: { 
+									vertexAdd: false,
+									arrowheadMove : false
+								},
+								defaultLink: new joint.dia.Link({
+									router: { name: 'metro' },
+									connector: { name: 'rounded' },
+									attrs: {   
+										'.connection': {
+											stroke: '#333333',
+											'stroke-width': 3
+										},
+										'.marker-target': { 
+											fill: '#333333',
+											d: 'M 10 0 L 0 5 L 10 10 z' 
+										}
+									}
+								}),
+								validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
+									  
+								    // Prevent linking from input ports.
+									if (magnetS && magnetS.getAttribute('type') === 'input')
+										return false;
+									// Prevent linking from output ports to input ports within one element.
+									if (cellViewS === cellViewT)
+										return false;
+									/* Os próximos 7 ifs podem ser feitos de forma dinâmica, inclusive ficará melhor e reduzirá o tamanho da função. 
+									   Só na hora de comentar o código é que reparei que estava dessa forma.
+									*/
+									if (magnetS.getAttribute('port') === 'out1') {
+										var portUsed = _.find(this.model.getLinks(), function(link) {
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in1');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in1';
+									}
+									if (magnetS.getAttribute('port') === 'out2') {
+										var portUsed = _.find(this.model.getLinks(), function(link) {  
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in2');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in2';
+									}
+									if (magnetS.getAttribute('port') === 'out3') {										  
+										var portUsed = _.find(this.model.getLinks(), function(link) {  
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in3');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in3';
+									}
+									if (magnetS.getAttribute('port') === 'out4'){
+										var portUsed = _.find(this.model.getLinks(), function(link) {
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in4');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in4';
+									}
+									if (magnetS.getAttribute('port') === 'out5'){
+										var portUsed = _.find(this.model.getLinks(), function(link) {
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in5');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in5';
+									}
+									if (magnetS.getAttribute('port') === 'out6'){
+										var portUsed = _.find(this.model.getLinks(), function(link) {
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in6');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in6';
+									}
+									if (magnetS.getAttribute('port') === 'out7'){
+										var portUsed = _.find(this.model.getLinks(), function(link) {
+											return (link.id !== linkView.model.id &&
+													link.get('target').id === cellViewT.model.id &&
+													link.get('target').port === magnetT.getAttribute('port') &&
+													magnetT && magnetT.getAttribute('port') === 'in7');
+										});
+										return !portUsed && magnetT && magnetT.getAttribute('port') === 'in7';
+									}
+								},
+								validateMagnet: function(cellView, magnet) {
+									// Note that this is the default behaviour. Just showing it here for reference.
+									// Disable linking interaction for magnets marked as passive (see below `.inPorts circle`).
+									return magnet.getAttribute('magnet') !== 'passive';
+								},
+								// Enable marking available cells & magnets
+								markAvailable: true,				  	  
+							});
+							/*	Sempre que uma ação acontece o log da pagina recebe valores. Quando a ação termina acontece o batch:stop.
+								Através da função paper.model.on, nós conseguimos identificar esse momento.
+								O problema é que no link temos 3 objetos. A reta, a seta e o botão de deletar. Na hora de criar uma conexão
+								estava tendo problemas para garantir que um link fosse feito apenas para um objeto (estava aceitando linkar para o nada).
+								Apenas com o batch:stop é que pude verificar o momento exato para que uma conexão fosse aceita.
+							*/
+							paper.model.on('batch:stop', function () {			
+								if (batchStop <= 1 ){
+									batchStop++;
+								}
+								else{
+									batchStop = 0;
+									var links = paper.model.getLinks();
+									_.each(links, function (link) {
+										var source = link.get('source');
+										var target = link.get('target');
+										//verifica se o link tem um início e um fim definidos para garantir que a conexão aconteça
+										if (source.id === undefined || target.id === undefined) {
+											link.remove();
+										}
+									});
 								}
 							});
+							paper.model.on('change', function () {			
+								batchStop = 1;
+							});
+							paper.model.on('remove', function () {			
+								batchStop = 1;
+							});
+							
+						</script>
+
+
+					<div id="items"></div>
+					<!-- Parte do HTML responsável pelos botões de salvar e importar projeto -->
+					<div style="float:right;height:50px;"> 
+						<!-- Botão de salvar o projeto -->
+						<button style="width:150px; height:30px;" id="btnSave" type="button">Salvar</div> 
+						<!-- Link criado no canto esquerdo inferior da tela após clicar no botão de salvar -->
+						<a id="export" href="" style="display: none">Exportar Projeto</a>
+					<!-- Botão de importar um projeto. Tem uma pequena diferença visual entre os dois botões que que não consegui resolver. 
+						 Outro problema nesse botão é que em alguns eventos ele muda de posição, como por exemplo na hora que clicar nele
+						 e abrir a pasta para poder escolher qual o projeto ele muda a posiçaõ dele ao fundo.
+					-->
+					<div class="fileUpload btn btn-default" style="width:150px; height:30px;">
+						<span>Importar</span>
+						<input type="file" id="fileinput" class="upload" />
+					</div>
+					
+					<!-- Nesse Script é feito a leitura do aquivo com o projeto importado. Primeiro criar os módulos e depois cria o links entre eles. 
+						 Dessa forma, o arquivo de leitura será lido duas vezes.
+					-->
+					<script type="text/javascript">
+						
+						var contents;
+						var obj;
+						// Com essa função é possível receber mais de um arquivo por de entrada. Porém não foi testado e inclusive acredito que seja algo sem necessidade.
+						function readFiles(evt) {
+							//Retrieve all the files from the FileList object
+							var files = evt.target.files; 
+							var id = [];
+							var posXY;
+		    		
+							if (files) {
+								//para o caso de ter mais de um aquivo de entrada
+								for (var i=0, f; f=files[i]; i++) {
+									var r = new FileReader();
+									//função que fará a leitura do conteúdo do JSON e transformar os seus dados em um objeto.
+									//onload é um evento que ao ser carregado executará a função.
+									r.onload = (function(f) {
+										return function(e) {
+											contents = e.target.result;
+											obj = jQuery.parseJSON(contents);
+											// Recebe cada módulo do projeto e faz criação dele através da função readJSon que encontra-se no arquivo create.js
+											for (var i = 0; i < obj["model"].length; i++){
+												//id do módulo com o tipo (root) do mesmo e o módulo em si (child). 
+												id[i] = obj["model"][i].root + '|' + obj["model"][i].child;
+												// Posição X e Y na tela do usuário.
+												posXY = {x:obj["model"][i].posX, y:obj["model"][i].posY};
+												readJSon(id[i], posXY);								
+											}
+										};
+									})(f);
+									// Faz a leitura do arquivo importado.
+									r.readAsText(f);
+									// onloadend é outro evento e acontece ao mesmo tempo que o anterior, por isso a necessidade de usar a função setTimeout
+									r.onloadend = ( function (){
+										/* Foi utilizado um tempo de 1000 milisegundos. Pois como os eventos acontecem ao mesmo tempo é necessário dar um tempo
+										   para que os módulos sejam criados primeiros para depois criar os links entre eles. 
+										*/
+										setTimeout(function () {
+											// Guarda quais os módulos criados na tela na variável allCells
+											var allCells = graph.getElements();
+											// Recebe os dados que serão guardados no arquivo que será salvo localmente, caso o usuário salve um projeto.
+											var jsonToSave = returnJsonToSave();
+											// sequencia de for e if percorrendo as duas variáveis como forma de garantir que o link seja criado de corretamente entre os módulos
+											for(var i = 0; i<allCells.length; i++){
+												for(var x = 0; x<jsonToSave.length; x++){
+													if (allCells[i].id === jsonToSave[x].jointId){
+														for(var y = 0; y< obj["model"].length; y++)
+															if(obj["model"][y].idValue === jsonToSave[x].idValue){
+																updateImportedAttributes(obj["model"][y]);
+																for (var z = 0; z < obj["model"][y]["links"].length; z++){
+																	for(var w = 0; w < jsonToSave.length; w++ ){
+																		if(obj["model"][y]["links"][z].targetId === jsonToSave[w].idValue){
+																			/*  Dar uma lida nessas páginas pois elas explicam muito bem o que é feito nesse script (principalmente a terceira):
+																					http://www.jointjs.com/tutorial#hello-world
+																					http://www.jointjs.com/demos/links
+																					http://www.jointjs.com/tutorial/ports
+																			*/
+																			var link = new joint.dia.Link({
+																				source: {
+																					id: jsonToSave[x].jointId,
+																					port: obj["model"][y]["links"][z].saida
+																				},
+																				target: {
+																					id: jsonToSave[w].jointId,
+																					port: obj["model"][y]["links"][z].entrada
+																				},
+																				router: { name: 'metro' },
+																				connector: { name: 'rounded' },
+																				attrs: {   
+																					'.connection': {
+																						stroke: '#333333',
+																						'stroke-width': 3
+																					},
+																					'.marker-target': { 
+																						fill: '#333333',
+																						d: 'M 10 0 L 0 5 L 10 10 z' 
+																					}
+																				}
+																			})
+																			//Cria o link na tela.
+																			graph.addCell(link) 
+																		}
+																	}
+																}
+															}
+													}
+												}
+											}
+										// local onde seta o tempo de espera do evento onloadend
+										}, 1000);
+									})
+								} 
+							//Caso nenhum arquivo seja carregado aparecerá um alerta na tela do usuário.
+							}else{
+								alert("Failed to load files"); 
+							}
+
 						}
-					});
-					
-					paper.model.on('change', function () {
-						
-						batchStop = 1;
-					});
-					
-					paper.model.on('remove', function () {
-						
-						batchStop = 1;
-					});
+						// Evento para fazer a leitura do arquivo importado e extrair seus dados para a recriação do projeto na tela do usuário. 
+						document.getElementById('fileinput').addEventListener('change', readFiles, false);
 			
-		</script>
+					</script>
+		  
+					<!-- HTML com a modal window que abre após clicar no botão Parameters -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<!-- Botão de fechar na parte superior da modal window -->
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<!-- Título que aparece na parte superior da modal window -->
+									<h4 class="modal-title" id="exampleModalLabel">Alterar Valores</h4>
+								</div>
+								<div class="modal-body">
+									<form>
+										<!-- Tabela. Caso queira alterar algo, o estilo da tabela foi criado no arquivo joint.css -->
+										<div class="form-group" id="here_table"></div>
+									</form>
+								</div>
+								<!-- As ações dos botões são tratadas no arquivo create.js -->
+								<div class="modal-footer">
+									<!-- Botão de cancelar na modal window -->
+									<button type="button" id="btnCancelEdit" class="btn btn-default" data-dismiss="modal">Close</button>
+									<!-- Botão de salvar na modal window -->
+									<button type="button" id="btnSaveJson" class="btn btn-primary" data-dismiss="modal">Save</button>
+								</div>
+							</div>
+						</div>
+					</div>
 
+				</section><!-- /.content -->
+			</div><!-- /.content-wrapper -->
 
-    <div id="items"></div>
-          <div style="float:right;height:50px;"><button style="width:150px; height:30px;" id="btnSave" type="button">Salvar</div> <a id="export" href="" style="display: none">Exportar Projeto</a></div>
-      
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Alterar Valores</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group" id="here_table">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="btnCancelEdit" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" id="btnSaveJson" class="btn btn-primary" data-dismiss="modal">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
+			<!-- Main Footer -->
+			<footer class="main-footer">
+				<!-- To the right -->
+				<!-- Default to the left --> 
+				<strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+			</footer>
 
+		</div><!-- ./wrapper -->
 
+		<!-- REQUIRED JS SCRIPTS -->
+		<!-- jQuery 2.1.3 -->
+		<script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+		<!-- Bootstrap 3.3.2 JS -->
+		<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/app.min.js" type="text/javascript"></script>
     
-          
-          
-          
-          
-          <!-- Your Page Content Here -->
-
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <!-- Default to the left --> 
-        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
-      </footer>
-
-    </div><!-- ./wrapper -->
-
-    <!-- REQUIRED JS SCRIPTS -->
-    
-    <!-- jQuery 2.1.3 -->
-    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js" type="text/javascript"></script>
-    
-    <!-- Optionally, you can add Slimscroll and FastClick plugins. 
-          Both of these plugins are recommended to enhance the 
-          user experience -->
-  </body>
+		<!-- Optionally, you can add Slimscroll and FastClick plugins. 
+			 Both of these plugins are recommended to enhance the 
+			 user experience 
+		-->
+	</body>
 </html>
